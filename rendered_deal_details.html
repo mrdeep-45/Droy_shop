@@ -1,0 +1,3307 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-menu-styles="light" loader="enable" data-default-header-styles="color" style="--primary-rgb: 20, 33, 54;" data-vertical-style="default">
+
+<head>
+    <meta charset="UTF-8">
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>  </title>
+<meta name="Description" content="">
+<meta name="Author" content="">
+<meta name="keywords" content="">
+<meta name="csrf-token" content="">
+    <link rel="icon" href="http://localhost/assets/admin-assets/images/brand-logos/fav.ico" type="image/x-icon">
+ <script src="http://localhost/assets/admin-assets/js/main.js"></script>
+ <link id="style" href="http://localhost/assets/admin-assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ <link href="http://localhost/assets/admin-assets/css/styles.css" rel="stylesheet">
+ <link href="http://localhost/assets/admin-assets/css/custom-modern.css?v=1784114334" rel="stylesheet">
+ 
+ <link href="http://localhost/assets/admin-assets/libs/node-waves/waves.min.css" rel="stylesheet">
+ <link href="http://localhost/assets/admin-assets/libs/simplebar/simplebar.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="http://localhost/assets/admin-assets/libs/flatpickr/flatpickr.min.css">
+ <link rel="stylesheet" href="http://localhost/assets/admin-assets/libs/@simonwep/pickr/themes/nano.min.css">
+ <link rel="stylesheet" href="http://localhost/assets/admin-assets/libs/jsvectormap/css/jsvectormap.min.css">
+ <link rel="stylesheet" href="http://localhost/assets/admin-assets/libs/swiper/swiper-bundle.min.css">
+ <link href="http://localhost/assets/admin-assets/libs/izitoast/css/iziToast.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="http://localhost/assets/admin-assets/libs/select2/select2.min.css">
+
+<link rel="stylesheet" href="http://localhost/assets/admin-assets/icon/css/fontawesome.all.css">
+<link rel="stylesheet" href="http://localhost/assets/admin-assets/icon/css/fontawesome.sharp-thin.css">
+<link rel="stylesheet" href="http://localhost/assets/admin-assets/icon/css/fontawesome.sharp-solid.css">
+<link rel="stylesheet" href="http://localhost/assets/admin-assets/icon/css/fontawesome.sharp-regular.css">
+<link rel="stylesheet" href="http://localhost/assets/admin-assets/icon/css/fontawesome.sharp-light.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
+
+<style>
+/* Datatable Mobile Top Controls */
+@media (max-width: 767px) {
+    .dataTables_wrapper .row:first-child {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+    .dataTables_wrapper .row:first-child > div {
+        width: auto !important;
+        padding: 0 5px !important;
+        flex: 0 0 auto !important;
+    }
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter {
+        text-align: left !important;
+        margin-top: 0 !important;
+    }
+    .dataTables_wrapper .dataTables_filter input {
+        width: 130px !important;
+        margin-left: 5px !important;
+        display: inline-block !important;
+    }
+    .dataTables_wrapper .dataTables_length label,
+    .dataTables_wrapper .dataTables_filter label {
+        margin-bottom: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        white-space: nowrap !important;
+    }
+}
+</style>
+
+    <style>
+        /* Flatpickr today date style fix */
+        .flatpickr-day.today:not(.selected) {
+            background: transparent !important;
+            border-color: #00b4b4 !important;
+            color: #2d3748 !important;
+            font-weight: bold;
+        }
+        .flatpickr-day.today:not(.selected):hover {
+            background: #edf2f7 !important;
+            color: #2d3748 !important;
+        }
+
+        .page-header-breadcrumb {
+            position: relative;
+            min-height: 0px !important;
+            top: 0rem !important;
+        }
+
+        .card-custom-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ebecf0;
+            padding: 12px 16px;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+        }
+
+        .deal-detail-card {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+            border: 1px solid #e1e4e8;
+            overflow: hidden;
+        }
+
+        .form-label-bold {
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.85rem;
+        }
+
+        /* Timeline style */
+        .timeline-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-date-header {
+            margin-bottom: 15px;
+        }
+
+        .timeline-date-badge {
+            background-color: #f6ad55;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .timeline-items-container {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .timeline-item-row {
+            position: relative;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-marker-circle {
+            position: absolute;
+            left: -27px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            z-index: 2;
+        }
+
+        .timeline-marker-circle.bg-success {
+            background-color: #38a169 !important;
+            color: #fff !important;
+            box-shadow: 0 0 0 2px #38a169;
+        }
+
+        .timeline-marker-circle.bg-primary {
+            background-color: #3182ce !important;
+            color: #fff !important;
+            box-shadow: 0 0 0 2px #3182ce;
+        }
+
+        .timeline-marker-circle.bg-info {
+            background-color: #00b5ad !important;
+            color: #fff !important;
+            box-shadow: 0 0 0 2px #00b5ad;
+        }
+
+        .timeline-marker-circle.bg-warning {
+            background-color: #dd6b20 !important;
+            color: #fff !important;
+            box-shadow: 0 0 0 2px #dd6b20;
+        }
+
+        .timeline-marker-circle.bg-danger {
+            background-color: #e53e3e !important;
+            color: #fff !important;
+            box-shadow: 0 0 0 2px #e53e3e;
+        }
+
+        .timeline-marker-circle.bg-secondary {
+            background-color: #718096 !important;
+            color: #fff !important;
+            box-shadow: 0 0 0 2px #718096;
+        }
+
+        .timeline-item-time {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #4a5568;
+            min-width: 85px;
+        }
+
+        .timeline-item-description {
+            font-size: 0.9rem;
+            color: #2d3748;
+        }
+
+        .timeline-item-by .badge {
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            background-color: #f7fafc;
+            border: 1px solid #edf2f7;
+            color: #4a5568;
+        }
+
+        /* Force select2 dropdown ALWAYS below the input */
+        .select2-container--open .select2-selection--single {
+            border-bottom-left-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+        }
+
+        /* Override Select2 upward opening - force dropdown below */
+        .select2-dropdown--above {
+            border-radius: 0 0 4px 4px !important;
+            border-top: 1px solid #aaa !important;
+            border-bottom: 1px solid #aaa !important;
+            top: 100% !important;
+            bottom: auto !important;
+            margin-top: 0 !important;
+        }
+
+        /* Prevent the selection from showing above-open styles */
+        .select2-container--open.select2-container--above .select2-selection--single,
+        .select2-container--open.select2-container--above .select2-selection--multiple {
+            border-radius: 4px !important;
+            border-bottom-color: #aaa !important;
+        }
+
+        /* Flatpickr calendar inside modal - ensure it stays visible and correctly positioned */
+        #noteModal .flatpickr-calendar {
+            z-index: 9999 !important;
+        }
+
+        .flatpickr-wrapper {
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .flatpickr-calendar {
+            z-index: 1060 !important;
+        }
+
+        /* Lock body scroll to prevent background movement when modal is open */
+        body.modal-open {
+            overflow: hidden !important;
+        }
+        /* Responsive Timeline styling for Mobile Screens */
+        @media (max-width: 767.98px) {
+            /* 1. Reduce overall padding to fit smaller width */
+            .timeline-wrapper {
+                padding: 10px 5px !important;
+            }
+
+            .timeline-items-container {
+                padding-left: 20px; /* Reduce padding on mobile */
+            }
+
+            .timeline-line {
+                left: 10px; /* Move vertical line closer to edge */
+            }
+
+            /* 2. Fix the row elements from breaking vertically */
+            .timeline-item-row {
+                flex-direction: column !important; /* Stack columns instead of jamming horizontally */
+                align-items: flex-start !important;
+                padding: 12px 15px;
+            }
+
+            /* Adjust relative position of the indicator icon */
+            .timeline-marker-circle {
+                left: -22px; /* Pull back into alignment with the line */
+                top: 22px;   /* Lock near top instead of vertical middle */
+                transform: none;
+                width: 20px;
+                height: 20px;
+                font-size: 0.6rem;
+            }
+
+            /* Allow container inside the row to take up full available width */
+            .timeline-item-row > div.flex-grow-1 {
+                width: 100% !important;
+            }
+
+            /* 3. Stack the Time, Description, and Performed By badges cleanly */
+            .timeline-item-row .d-flex.align-items-center {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 5px;
+            }
+
+            .timeline-item-time {
+                font-size: 0.75rem;
+                min-width: unset;
+                margin-bottom: 2px;
+                color: #718096 !important;
+            }
+
+            .timeline-item-description {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                word-break: break-word;
+            }
+
+            /* Move 'By user' badge below the message instead of squeezing next to it */
+            .timeline-item-by {
+                margin-left: 0 !important;
+                margin-top: 8px !important;
+                align-self: flex-start;
+            }
+
+            .timeline-item-by .badge {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+
+            /* Adjust quotation metadata container on mobile */
+            .timeline-item-row button, 
+            .timeline-item-row a.btn {
+                padding: 4px 8px !important;
+                font-size: 10px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="switcher-canvas" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title text-default" id="offcanvasRightLabel">Switcher</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <nav class="border-bottom border-block-end-dashed">
+                <div class="nav nav-tabs nav-justified" id="switcher-main-tab" role="tablist">
+                    <button class="nav-link active" id="switcher-home-tab" data-bs-toggle="tab" data-bs-target="#switcher-home"
+                        type="button" role="tab" aria-controls="switcher-home" aria-selected="true">Theme Styles</button>
+                    <button class="nav-link" id="switcher-profile-tab" data-bs-toggle="tab" data-bs-target="#switcher-profile"
+                        type="button" role="tab" aria-controls="switcher-profile" aria-selected="false">Theme Colors</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active border-0" id="switcher-home" role="tabpanel" aria-labelledby="switcher-home-tab"
+                    tabindex="0">
+                    <div class="">
+                        <p class="switcher-style-head">Theme Color Mode:</p>
+                        <div class="row switcher-style gx-0">
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-light-theme">
+                                        Light
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="theme-style" id="switcher-light-theme"
+                                        checked>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-dark-theme">
+                                        Dark
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="theme-style" id="switcher-dark-theme">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p class="switcher-style-head">Directions:</p>
+                        <div class="row switcher-style gx-0">
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-ltr">
+                                        LTR
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="direction" id="switcher-ltr" checked>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-rtl">
+                                        RTL
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="direction" id="switcher-rtl">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p class="switcher-style-head">Navigation Styles:</p>
+                        <div class="row switcher-style gx-0">
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-vertical">
+                                        Vertical
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="navigation-style" id="switcher-vertical"
+                                        checked>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-horizontal">
+                                        Horizontal
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="navigation-style"
+                                        id="switcher-horizontal">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-menu-styles">
+                        <p class="switcher-style-head">Vertical &amp; Horizontal Menu Styles:</p>
+                        <div class="row switcher-style gx-0  gy-2">
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-menu-click">
+                                        Menu Click
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="navigation-menu-styles"
+                                        id="switcher-menu-click">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-menu-hover">
+                                        Menu Hover
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="navigation-menu-styles"
+                                        id="switcher-menu-hover">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-icon-click">
+                                        Icon Click
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="navigation-menu-styles"
+                                        id="switcher-icon-click">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-icon-hover">
+                                        Icon Hover
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="navigation-menu-styles"
+                                        id="switcher-icon-hover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidemenu-layout-styles">
+                        <p class="switcher-style-head">Sidemenu Layout Styles:</p>
+                        <div class="row switcher-style gx-0  gy-2">
+                            <div class="col-sm-6">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-default-menu">
+                                        Default Menu
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                        id="switcher-default-menu" checked>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-closed-menu">
+                                        Closed Menu
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                        id="switcher-closed-menu">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-icontext-menu">
+                                        Icon Text
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                        id="switcher-icontext-menu">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-icon-overlay">
+                                        Icon Overlay
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                        id="switcher-icon-overlay">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-detached">
+                                        Detached
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                        id="switcher-detached">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-double-menu">
+                                        Double Menu
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                        id="switcher-double-menu">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p class="switcher-style-head">Page Styles:</p>
+                        <div class="row switcher-style gx-0">
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-regular">
+                                        Regular
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="page-styles" id="switcher-regular"
+                                        checked>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-classic">
+                                        Classic
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="page-styles" id="switcher-classic">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p class="switcher-style-head">Layout Width Styles:</p>
+                        <div class="row switcher-style gx-0">
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-full-width">
+                                        Full Width
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="layout-width" id="switcher-full-width"
+                                        checked>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-boxed">
+                                        Boxed
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="layout-width" id="switcher-boxed">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p class="switcher-style-head">Menu Positions:</p>
+                        <div class="row switcher-style gx-0">
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-menu-fixed">
+                                        Fixed
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="menu-positions" id="switcher-menu-fixed"
+                                        checked>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-menu-scroll">
+                                        Scrollable
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="menu-positions" id="switcher-menu-scroll">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p class="switcher-style-head">Header Positions:</p>
+                        <div class="row switcher-style gx-0">
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-header-fixed">
+                                        Fixed
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="header-positions"
+                                        id="switcher-header-fixed" checked>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-header-scroll">
+                                        Scrollable
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="header-positions"
+                                        id="switcher-header-scroll" >
+                                </div>
+                            </div>
+                            <div class="col-4 rounded-header">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-header-rounded">
+                                        Rounded
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="header-positions"
+                                        id="switcher-header-rounded">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p class="switcher-style-head">Loader:</p>
+                        <div class="row switcher-style gx-0">
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-loader-enable">
+                                        Enable
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="page-loader"
+                                        id="switcher-loader-enable">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check switch-select">
+                                    <label class="form-check-label" for="switcher-loader-disable">
+                                        Disable
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="page-loader"
+                                        id="switcher-loader-disable" checked>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade border-0" id="switcher-profile" role="tabpanel" aria-labelledby="switcher-profile-tab" tabindex="0">
+                    <div>
+                        <div class="theme-colors">
+                            <p class="switcher-style-head">Menu Colors:</p>
+                            <div class="d-flex switcher-style pb-2">
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-white" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Light Menu" type="radio" name="menu-colors"
+                                        id="switcher-menu-light">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-dark" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Dark Menu" type="radio" name="menu-colors"
+                                        id="switcher-menu-dark" checked>
+                                </div>
+                            </div>
+                            <div class="px-4 pb-3 text-muted fs-11">Note:If you want to change color Menu dynamically change from below Theme Primary color picker</div>
+                        </div>
+                        <div class="theme-colors">
+                            <p class="switcher-style-head">Header &amp; Bredcrumb Colors:</p>
+                            <div class="d-flex switcher-style pb-2">
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-dark" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Dark Header" type="radio" name="header-colors"
+                                        id="switcher-header-dark">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-primary" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Color Header" type="radio" name="header-colors"
+                                        id="switcher-header-primary">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-gradient" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Gradient Header" type="radio" name="header-colors"
+                                        id="switcher-header-gradient">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-transparent" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Transparent Header" type="radio" name="header-colors"
+                                        id="switcher-header-transparent">
+                                </div>
+                            </div>
+                            <div class="px-4 pb-3 text-muted fs-11">Note:If you want to change color Header dynamically change from below Theme Primary color picker</div>
+                        </div>
+                        <div class="theme-colors">
+                            <p class="switcher-style-head">Header Colors:</p>
+                            <div class="d-flex switcher-style pb-2">
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-white" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Default Light Header" type="radio" name="header-colors"
+                                        id="switcher-default-header-light">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-dark" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Default Dark Header" type="radio" name="header-colors"
+                                        id="switcher-default-header-dark">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-primary" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Default Color Header" type="radio" name="header-colors"
+                                        id="switcher-default-header-primary">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-gradient" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Default Gradient Header" type="radio" name="header-colors"
+                                        id="switcher-default-header-gradient">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-transparent" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Default Transparent Header" type="radio" name="header-colors"
+                                        id="switcher-default-header-transparent">
+                                </div>
+                            </div>
+                            <div class="px-4 pb-3 text-muted fs-11">Note:If you want to change color Header dynamically change from below Theme Primary color picker</div>
+                        </div>
+                        <div class="theme-colors">
+                            <p class="switcher-style-head">Theme Primary:</p>
+                            <div class="d-flex flex-wrap align-items-center switcher-style">
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-primary-1" type="radio"
+                                        name="theme-primary" id="switcher-primary">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-primary-2" type="radio"
+                                        name="theme-primary" id="switcher-primary1">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-primary-3" type="radio" name="theme-primary"
+                                        id="switcher-primary2">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-primary-4" type="radio" name="theme-primary"
+                                        id="switcher-primary3">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-primary-5" type="radio" name="theme-primary"
+                                        id="switcher-primary4">
+                                </div>
+                                <div class="form-check switch-select ps-0 mt-1 color-primary-light">
+                                    <div class="theme-container-primary"></div>
+                                    <div class="pickr-container-primary"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="theme-colors">
+                            <p class="switcher-style-head">Theme Background:</p>
+                            <div class="d-flex flex-wrap align-items-center switcher-style">
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-bg-1" type="radio"
+                                        name="theme-background" id="switcher-background">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-bg-2" type="radio"
+                                        name="theme-background" id="switcher-background1">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-bg-3" type="radio" name="theme-background"
+                                        id="switcher-background2">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-bg-4" type="radio"
+                                        name="theme-background" id="switcher-background3">
+                                </div>
+                                <div class="form-check switch-select me-3">
+                                    <input class="form-check-input color-input color-bg-5" type="radio"
+                                        name="theme-background" id="switcher-background4">
+                                </div>
+                                <div class="form-check switch-select ps-0 mt-1 tooltip-static-demo color-bg-transparent">
+                                    <div class="theme-container-background"></div>
+                                    <div class="pickr-container-background"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-image mb-3">
+                            <p class="switcher-style-head">Menu With Background Image:</p>
+                            <div class="d-flex flex-wrap align-items-center switcher-style">
+                                <div class="form-check switch-select m-2">
+                                    <input class="form-check-input bgimage-input bg-img1" type="radio"
+                                        name="theme-background" id="switcher-bg-img">
+                                </div>
+                                <div class="form-check switch-select m-2">
+                                    <input class="form-check-input bgimage-input bg-img2" type="radio"
+                                        name="theme-background" id="switcher-bg-img1">
+                                </div>
+                                <div class="form-check switch-select m-2">
+                                    <input class="form-check-input bgimage-input bg-img3" type="radio" name="theme-background"
+                                        id="switcher-bg-img2">
+                                </div>
+                                <div class="form-check switch-select m-2">
+                                    <input class="form-check-input bgimage-input bg-img4" type="radio"
+                                        name="theme-background" id="switcher-bg-img3">
+                                </div>
+                                <div class="form-check switch-select m-2">
+                                    <input class="form-check-input bgimage-input bg-img5" type="radio"
+                                        name="theme-background" id="switcher-bg-img4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid canvas-footer">
+                    <a href="javascript:void(0);" id="reset-all" class="btn btn-danger m-1">Reset</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loader">
+    <img src="http://localhost/assets/admin-assets/images/media/loader.svg" alt="">
+</div>
+
+    <div class="page">
+        <style>
+    .slide>a>span.side-menu__icon {
+        margin-top: -5px;
+    }
+
+    .slide.active>a.side-menu__item.active {
+        font-weight: bold;
+    }
+
+    /* Sidebar theme using Hexagon logo teal colors */
+    :root {
+        /* Deep teal gradient (logo dark teal) */
+        --sidebar-bg: #00454f;
+        /* Vibrant turquoise (logo accent) for active */
+        --sidebar-active-bg: #007b8a;
+        /* Slightly lighter teal for hover */
+        --sidebar-hover-bg: #00606e;
+        /* Bright turquoise highlight border */
+        --sidebar-accent: #00b4b4;
+    }
+
+    #sidebar.app-sidebar {
+        background: linear-gradient(180deg, #004f5a 0%, #003840 100%) !important;
+        border-right: none !important;
+        box-shadow: 2px 0 16px rgba(0, 70, 80, 0.35);
+    }
+
+    #sidebar.app-sidebar .main-sidebar-header {
+        background: linear-gradient(135deg, #005f6b 0%, #004550 100%) !important;
+        border-bottom: 1px solid rgba(0, 180, 180, 0.2) !important;
+        border-right: none !important;
+    }
+
+    #sidebar.app-sidebar .main-sidebar {
+        background: transparent !important;
+    }
+
+    .app-header {
+        border-left: none !important;
+        border-bottom: 1px solid rgba(0, 180, 180, 0.15) !important;
+        background: #ffffff !important;
+    }
+
+    /* Force all text, labels, icons, and angles inside sidebar items to be white */
+    #sidebar.app-sidebar .side-menu__item,
+    #sidebar.app-sidebar .side-menu__item *,
+    #sidebar.app-sidebar .side-menu__label,
+    #sidebar.app-sidebar .side-menu__icon i,
+    #sidebar.app-sidebar .side-menu__angle {
+        color: rgba(255,255,255,0.92) !important;
+    }
+
+    /* Sidebar menu item layout details */
+    #sidebar.app-sidebar .side-menu__item {
+        border-radius: 6px;
+        margin: 3px 10px;
+        padding: 10px 15px;
+        transition: all 0.2s ease;
+    }
+
+    /* Hover state background */
+    #sidebar.app-sidebar .side-menu__item:hover {
+        background-color: var(--sidebar-hover-bg) !important;
+        color: #ffffff !important;
+    }
+
+    /* Active / Open state background */
+    #sidebar.app-sidebar .slide.active>.side-menu__item,
+    #sidebar.app-sidebar .slide.open>.side-menu__item,
+    #sidebar.app-sidebar .side-menu__item.active {
+        background: linear-gradient(90deg, #007b8a 0%, #009aaa 100%) !important;
+        border-left: 3px solid var(--sidebar-accent) !important;
+        box-shadow: 0 2px 8px rgba(0, 180, 180, 0.25) !important;
+        color: #ffffff !important;
+    }
+
+    /* Submenu list styling (child slide-menu) */
+    #sidebar.app-sidebar .slide-menu.child1 {
+        background-color: rgba(0, 0, 0, 0.15) !important;
+        margin: 0 10px 5px 25px !important;
+        padding: 5px 0 !important;
+        border-radius: 4px;
+        border-left: 1px dashed rgba(255, 255, 255, 0.25) !important;
+    }
+
+    /* Submenu items list resets */
+    #sidebar.app-sidebar .slide-menu.child1 li {
+        padding: 0 !important;
+    }
+
+    /* Submenu links styling */
+    #sidebar.app-sidebar .slide-menu.child1 a.side-menu__item {
+        font-size: 13px !important;
+        margin: 2px 5px !important;
+        padding: 6px 12px 6px 28px !important;
+        /* Added left padding for bullet */
+        background-color: transparent !important;
+        position: relative !important;
+    }
+
+    /* Style and position the submenu bullet dot (white & aligned) */
+    #sidebar.app-sidebar .slide-menu.child1 .side-menu__item:before {
+        content: "" !important;
+        position: absolute !important;
+        left: 12px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 6px !important;
+        height: 6px !important;
+        border: 1px solid #ffffff !important;
+        background-color: transparent !important;
+        border-radius: 50% !important;
+        opacity: 0.7 !important;
+    }
+
+    #sidebar.app-sidebar .slide-menu.child1 .side-menu__item:hover:before,
+    #sidebar.app-sidebar .slide-menu.child1 .side-menu__item.active:before {
+        background-color: #ffffff !important;
+        border-color: #ffffff !important;
+        opacity: 1 !important;
+    }
+
+    /* Submenu links hover / active background */
+    #sidebar.app-sidebar .slide-menu.child1 a.side-menu__item:hover,
+    #sidebar.app-sidebar .slide-menu.child1 a.side-menu__item.active {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        font-weight: bold !important;
+    }
+
+    /* Navbar Back Button style - updated for white header */
+    .navbar-back-btn {
+        width: 32px;
+        height: 32px;
+        border: 1.5px solid #ccecee;
+        border-radius: 8px;
+        color: #005f6b !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        margin: 0;
+        text-decoration: none;
+        vertical-align: middle;
+        background-color: #f0fafa;
+    }
+
+    .navbar-back-btn:hover {
+        background-color: #00b4b4 !important;
+        border-color: #00b4b4 !important;
+        color: #ffffff !important;
+        transform: scale(1.05);
+    }
+
+    .navbar-back-btn i {
+        font-size: 0.75rem;
+    }
+
+    .slide__category {
+        padding: 20px 15px 5px 20px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .slide__category .category-name {
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        padding: 2px 10px;
+        border-radius: 20px;
+    }
+
+    .slide__category::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background-color: var(--cat-line, rgba(255, 255, 255, 0.15));
+        margin-left: 12px;
+        margin-right: 15px;
+    }
+    /* Bootstrap Collapse transitions overrides for Ynex sidebar */
+    #sidebar.app-sidebar .slide-menu.child1.collapse:not(.show) {
+        display: none !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        height: 0 !important;
+    }
+    #sidebar.app-sidebar .slide-menu.child1.collapsing {
+        display: block !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        margin: 0 10px 0 25px !important;
+        border: none !important;
+        transition: height 0.35s ease-in-out !important;
+    }
+    #sidebar.app-sidebar .slide-menu.child1.collapse.show {
+        display: block !important;
+    }
+    #sidebar.app-sidebar .side-menu__item:not(.collapsed) .side-menu__angle {
+        transform: rotate(180deg) !important;
+    }
+
+    /* Sidebar Logo Area — teal gradient matching sidebar */
+    #sidebar.app-sidebar .main-sidebar-header {
+        background: linear-gradient(135deg, #005f6b 0%, #004550 100%) !important;
+        border-bottom: 1px solid rgba(0, 180, 180, 0.25) !important;
+        border-right: none !important;
+        padding: 10px 14px !important;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+    }
+
+    #sidebar.app-sidebar .main-sidebar-header .header-logo {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        /* White background pill behind logo */
+        background: rgba(255,255,255,0.92);
+        border-radius: 10px;
+        padding: 6px 14px;
+    }
+
+    /* Header bar — teal gradient matching sidebar top */
+    .app-header {
+        border-left: none !important;
+        border-bottom: 1px solid rgba(0, 180, 180, 0.2) !important;
+        background: linear-gradient(90deg, #005f6b 0%, #007b8a 60%, #009aaa 100%) !important;
+        box-shadow: 0 2px 12px rgba(0, 60, 70, 0.25) !important;
+    }
+
+    /* Hamburger icon — white on teal */
+    .sidemenu-toggle .header-link-icon,
+    .sidemenu-toggle i {
+        color: rgba(255,255,255,0.90) !important;
+    }
+
+    /* User dropdown section in header */
+    .header-profile-dropdown {
+        border-top: 3px solid #00b4b4 !important;
+    }
+
+
+    /* === LOGO DISPLAY CONTROL ===
+       Only show desktop-logo by default. Hide toggle/dark duplicates.
+    */
+    #sidebar.app-sidebar .main-sidebar-header .header-logo img {
+        display: none !important;
+    }
+    #sidebar.app-sidebar .main-sidebar-header .header-logo img.desktop-logo {
+        display: block !important;
+        max-height: 40px !important;
+        width: auto !important;
+        max-width: 150px !important;
+        object-fit: contain !important;
+    }
+    [data-toggled="icon-overlay-close"] #sidebar.app-sidebar .main-sidebar-header .header-logo img.desktop-logo,
+    [data-toggled="icon-text-close"] #sidebar.app-sidebar .main-sidebar-header .header-logo img.desktop-logo {
+        display: none !important;
+    }
+    [data-toggled="icon-overlay-close"] #sidebar.app-sidebar .main-sidebar-header .header-logo img.toggle-logo,
+    [data-toggled="icon-text-close"] #sidebar.app-sidebar .main-sidebar-header .header-logo img.toggle-logo {
+        display: block !important;
+        max-height: 32px !important;
+        width: auto !important;
+        object-fit: contain !important;
+    }
+
+    /* === HEADER SEARCH BAR — styled for teal bg === */
+    .main-header-center {
+        display: flex !important;
+        align-items: center !important;
+        position: relative !important;
+    }
+    .custom-header-search .form-control,
+    .custom-header-search input[type="text"] {
+        background: rgba(255,255,255,0.15) !important;
+        border: 1.5px solid rgba(255,255,255,0.30) !important;
+        color: #ffffff !important;
+    }
+    .custom-header-search input[type="text"]::placeholder {
+        color: rgba(255,255,255,0.55) !important;
+    }
+    .custom-header-search input[type="text"]:focus {
+        background: rgba(255,255,255,0.22) !important;
+        border-color: rgba(255,255,255,0.6) !important;
+        outline: none !important;
+    }
+    .custom-header-search > div {
+        border: 1.5px solid rgba(255,255,255,0.30) !important;
+        background: rgba(255,255,255,0.12) !important;
+    }
+    .custom-header-search i {
+        color: rgba(255,255,255,0.75) !important;
+    }
+
+    /* Back button — white on teal */
+    .navbar-back-btn {
+        width: 32px;
+        height: 32px;
+        border: 1.5px solid rgba(255,255,255,0.40);
+        border-radius: 8px;
+        color: rgba(255,255,255,0.90) !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        margin: 0;
+        text-decoration: none;
+        vertical-align: middle;
+        background-color: rgba(255,255,255,0.12);
+    }
+    .navbar-back-btn:hover {
+        background-color: rgba(255,255,255,0.25) !important;
+        border-color: rgba(255,255,255,0.70) !important;
+        color: #ffffff !important;
+        transform: scale(1.05);
+    }
+    .navbar-back-btn i {
+        font-size: 0.75rem;
+    }
+
+    /* === RIGHT SIDE USER PROFILE CARD — teal bg version === */
+    .user-profile-card {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 6px 12px !important;
+        border-radius: 10px !important;
+        background: rgba(255,255,255,0.15) !important;
+        border: 1.5px solid rgba(255,255,255,0.28) !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        text-decoration: none !important;
+    }
+    .user-profile-card:hover {
+        background: rgba(255,255,255,0.25) !important;
+        border-color: rgba(255,255,255,0.55) !important;
+    }
+    .user-avatar-box {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 2px solid rgba(255,255,255,0.40);
+        flex-shrink: 0;
+        background: rgba(255,255,255,0.20);
+    }
+    .user-avatar-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .user-text-info {
+        display: flex;
+        flex-direction: column;
+        min-width: 80px;
+    }
+    .user-text-info .uname {
+        font-size: 13px;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.3;
+        white-space: nowrap;
+        max-width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .user-text-info .urole {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 700;
+        color: #003840;
+        background: rgba(255,255,255,0.80);
+        border-radius: 4px;
+        padding: 1px 6px;
+        margin-top: 2px;
+        letter-spacing: 0.3px;
+        width: fit-content;
+    }
+    .user-caret {
+        color: rgba(255,255,255,0.75);
+        font-size: 10px;
+        margin-left: 2px;
+    }
+</style>
+<header class="app-header">
+    
+        
+
+
+    <style>
+        @media (max-width: 991.98px) {
+            .app-sidebar .main-sidebar-header {
+                display: flex !important;
+            }
+            .main-sidebar {
+                margin-block-start: 4rem !important;
+            }
+        }
+    </style>
+
+    <div class="main-header-container container-fluid">
+        <div class="header-content-left">
+            <div class="header-element">
+                <div class="horizontal-logo d-none">
+                    <a href="http://localhost/dashboard" class="header-logo">
+                        <img src="http://localhost/assets/uploads/company/1784108520_logo.png" style="width:100%;height:43px;" alt="Hexagon CRM" class="desktop-logo">
+                        <img src="http://localhost/assets/uploads/company/1784108520_logo.png" style="width:38px;height:33px;" alt="Hexagon CRM" class="toggle-logo">
+                        <img src="http://localhost/assets/uploads/company/1784108520_logo.png" style="width:100%;height:56px;" alt="Hexagon CRM" class="desktop-dark">
+                        <img src="http://localhost/assets/uploads/company/1784108520_logo.png" style="width:38px;height:33px;" alt="Hexagon CRM" class="toggle-dark">
+                    </a>
+                </div>
+            </div>
+            <div class="header-element">
+                <a aria-label="anchor" href="javascript:void(0);" class="sidemenu-toggle header-link ms-2"
+                    data-bs-toggle="sidebar">
+                    <span class="open-toggle">
+                        <i class="fs-13 fa fa-bars header-link-icon"></i>
+                    </span>
+                </a>
+                <div class="d-none d-md-inline-flex align-items-center justify-content-center ms-3 me-3" style="height: 100%;">
+                    <a href="javascript:void(0);"
+                        onclick="if(document.referrer && document.referrer.includes(window.location.hostname)){ window.location.href = document.referrer; } else { window.history.back(); }"
+                        class="navbar-back-btn" title="Go Back">
+                        <i class="fas fa-reply"></i>
+                    </a>
+                </div>
+                <div class="custom-header-search d-none d-lg-flex align-items-center ms-3">
+                    <div style="display:flex; align-items:center; border:1.5px solid #b8dfe2; border-radius:9px; background:#f4fbfb; overflow:hidden; height:38px; min-width:320px; max-width:380px;">
+                        <i class="fa fa-magnifying-glass" style="padding:0 12px; color:#007b8a; font-size:14px; flex-shrink:0;"></i>
+                        <input type="text" id="typehead" autocomplete="off"
+                            placeholder="Search for results... (Ctrl + Shift + F)"
+                            style="flex:1; border:none; background:transparent; outline:none; font-size:13px; color:#003840; padding:0; height:100%;">
+                    </div>
+                    <div id="headersearch" class="header-search" style="display:none;">
+                        <div class="p-3">
+                            <div class="mt-3">
+                                <div id="search-results">
+                                    <p class="fw-semibold text-center text-muted mb-2 fs-13">Quick Menu Results</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-element header-search d-lg-none d-block ">
+                <a aria-label="anchor" href="javascript:void(0);" class="header-link" data-bs-toggle="modal"
+                    data-bs-target="#searchModal">
+                    <i class="bx bx-search-alt-2 header-link-icon"></i>
+                </a>
+            </div>
+        </div>
+        <div class="header-content-right">
+            <div class="header-element mainuserProfile">
+                <a href="javascript:void(0);" class="header-link dropdown-toggle user-profile-card" id="mainHeaderProfile"
+                    data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    <div class="user-avatar-box">
+                        <img alt="avatar" src="http://localhost/assets/uploads/company/1784108520_favicon.png">
+                    </div>
+                    <div class="user-text-info">
+                        <span class="uname"></span>
+                        <span class="urole">Company</span>
+                    </div>
+                    <i class="fa fa-chevron-down user-caret"></i>
+                </a>
+                
+                <ul class="dropdown-menu  border-0 main-header-dropdown  overflow-hidden header-profile-dropdown"
+                    aria-labelledby="mainHeaderProfile">
+                                            <li><a class="dropdown-item" href="http://localhost/profile"><i
+                                    class="fs-13 me-2 fa fa-user"></i>Profile</a>
+                        </li>
+                                        <li><a class="dropdown-item" href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                                class="fs-13 me-2 fa fa-arrow-to-right"></i>Log Out</a></li>
+                </ul>
+            </div>
+            <div class="header-element ">
+                <a aria-label="anchor" href="javascript:void(0);" class="header-link switcher-icon ms-1 d-none"
+                    data-bs-toggle="offcanvas" data-bs-target="#switcher-canvas">
+                    <i class="fa fa-cog bx-spin header-link-icon"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+<aside class="app-sidebar sticky" id="sidebar">
+    <div class="main-sidebar-header">
+        <a href="http://localhost/dashboard" class="header-logo">
+            <img src="http://localhost/assets/uploads/company/1784108520_logo.png" style="max-height:40px; width:auto; object-fit:contain;" alt="Hexagon CRM" class="desktop-logo">
+            <img src="http://localhost/assets/uploads/company/1784108520_logo.png" style="max-height:32px; width:auto; object-fit:contain;" alt="Hexagon CRM" class="toggle-logo">
+            <img src="http://localhost/assets/uploads/company/1784108520_logo.png" style="max-height:40px; width:auto; object-fit:contain;" alt="Hexagon CRM" class="desktop-dark">
+            <img src="http://localhost/assets/uploads/company/1784108520_logo.png" style="max-height:32px; width:auto; object-fit:contain;" alt="Hexagon CRM" class="toggle-dark">
+        </a>
+    </div>
+    <div class="main-sidebar" id="sidebar-scroll">
+        <nav class="main-menu-container nav nav-pills flex-column sub-open">
+            <div class="slide-left" id="slide-left">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+                </svg>
+            </div>
+            <ul class="main-menu" id="main-menu-container">
+
+                <!-- DASHBOARD -->
+                <li class="slide ">
+                    <a href="http://localhost/dashboard"
+                        class="side-menu__item ">
+                        <span class="side-menu__icon">
+                            <i class='fs-13 fa fa-table-columns'></i>
+                        </span>
+                        <span class="side-menu__label">Dashboard</span>
+                    </a>
+                </li>
+
+                
+
+                
+                    
+                                                        
+                <!-- COMPANY SETTINGS -->
+                                                        <li class="slide ">
+                        <a href="#submenu-company-settings" class="side-menu__item collapsed " data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="submenu-company-settings">
+                            <span class="side-menu__icon"><i class='fs-13 fa fa-gear'></i></span>
+                            <span class="side-menu__label">Settings</span>
+                            <i class="fa-sharp fa-regular fa-caret-down side-menu__angle"></i>
+                        </a>
+
+                        <ul class="slide-menu child1 collapse " id="submenu-company-settings" data-bs-parent="#main-menu-container">
+                            <li class="slide side-menu__label1">
+                                <a href="http://localhost/menu/submenu"
+                                    class=" ">
+                                    Role Permission
+                                </a>
+                            </li>
+                            <li class="slide">
+                                <a href="http://localhost/menu/submenu"
+                                    class="side-menu__item ">
+                                    Role Permission
+                                </a>
+                            </li>
+
+                            <li class="slide side-menu__label1">
+                                <a href="http://localhost/change-password"
+                                    class=" ">
+                                    Change Password
+                                </a>
+                            </li>
+                            <li class="slide">
+                                <a href="http://localhost/change-password"
+                                    class="side-menu__item ">
+                                    Change Password
+                                </a>
+                            </li>
+
+                            <li class="slide side-menu__label1">
+                                <a href="http://localhost/mail-config" class=" ">
+                                    Configuration
+                                </a>
+                            </li>
+                            <li class="slide">
+                                <a href="http://localhost/mail-config"
+                                    class="side-menu__item ">
+                                    Configuration
+                                </a>
+                            </li>
+
+                            <li class="slide side-menu__label1">
+                                <a href="http://localhost/profile" class=" ">
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="slide">
+                                <a href="http://localhost/profile"
+                                    class="side-menu__item ">
+                                    Profile
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                
+                <!-- LOGOUT -->
+                <li class="slide">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="side-menu__item">
+                        <span class=" side-menu__icon"><i
+                                class='fs-13 fa-duotone fa-solid fa-arrow-left-from-bracket'></i></span>
+                        <span class="side-menu__label">Logout</span>
+                    </a>
+                </li>
+                <form id="logout-form" action="http://localhost/logout" method="POST" style="display: none;">
+                    <input type="hidden" name="_token" value="" autocomplete="off">                </form>
+            </ul>
+
+            <div class="slide-right" id="slide-right">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                </svg>
+            </div>
+        </nav>
+    </div>
+</aside>
+
+        <div class="page-header-breadcrumb d-md-flex d-block align-items-center justify-content-between "></div>
+
+        <div class="main-content app-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12 mt-1">
+                        <div class="card custom-card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="card-title text-primary mb-0">
+                                    Deal Details (Alphie 3, Alphie 10)
+                                </div>
+                                <ul class="nav nav-tabs justify-content-end nav-tabs-footer mb-0" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                                            href="#overview" role="tab" aria-controls="overview" aria-selected="true">
+                                            <i class="fas fa-eye me-1"></i> Overview
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="timeline-tab" data-bs-toggle="tab" href="#timeline"
+                                            role="tab" aria-controls="timeline" aria-selected="false">
+                                            <i class="fas fa-history me-1"></i> Timeline
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link"
+                                            href="http://localhost/quotation/create/eyJpdiI6ImRia3JtV0pJQ2VRR2J1RmxqUU1welE9PSIsInZhbHVlIjoicC9paTBLVHBCUlV0NENYWVd2WUNUZz09IiwibWFjIjoiM2E2YmNmZWIzMDI5YTJiN2I1NGQ4YjA1ZjAyMzEyZGM0OTIyMGExNWU3OGVjNDAxMzg5ZTE1YTk5ZjExNGE1YiIsInRhZyI6IiJ9">
+                                            <i class="fa-solid fa-quote-left"></i> Send Quotation
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="tab-content">
+
+                                    <!-- Overview Tab Pane -->
+                                    <div class="tab-pane fade show active text-muted px-1" id="overview" role="tabpanel"
+                                        aria-labelledby="overview-tab">
+                                        <div class="row">
+                                            <!-- Left Column: Forms -->
+                                            <div class="col-lg-8 mb-3">
+
+                                                <!-- Edit Deal Form -->
+                                                <form id="dealDetailsForm" class="h-100" novalidate>
+                                                    <input type="hidden" name="_token" value="" autocomplete="off">                                                    <input type="hidden" name="deal_id" id="deal_id"
+                                                        value="25">
+
+                                                    <div class="card deal-detail-card h-100 mb-0">
+                                                        <div
+                                                            class="card-custom-header d-flex justify-content-between align-items-center">
+                                                            <h6 class="mb-0 text-primary fw-bold"><i
+                                                                    class="fas fa-edit me-1"></i> Edit Deal Details</h6>
+                                                            <div class="d-flex gap-2">
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm px-3"
+                                                                    id="btnToggleEdit">
+                                                                    <i class="fas fa-pen me-1"></i> Edit
+                                                                </button>
+                                                                <button type="button"
+                                                                    class="btn btn-light border btn-sm px-3 d-none"
+                                                                    id="btnCancelEdit">
+                                                                    <i class="fas fa-times me-1"></i> Cancel
+                                                                </button>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary btn-sm px-3 d-none"
+                                                                    id="saveDealDetailsBtn">
+                                                                    <i class="fas fa-save me-1"></i> Update Details
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                 <div class="col-md-6 mb-3">
+                                                                     <label for="deal_name"
+                                                                         class="form-label form-label-bold">Deal Name / Products
+                                                                         <span class="text-danger">*</span></label>
+                                                                     <select class="form-select select2 deal-edit-field"
+                                                                         name="product_ids[]" id="deal_name" multiple="multiple" required
+                                                                         disabled>
+                                                                                                                                              </select>
+                                                                 </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="closing_date"
+                                                                        class="form-label form-label-bold">Closing Date
+                                                                        <span class="text-danger">*</span></label>
+                                                                    <input type="text"
+                                                                        class="form-control deal-edit-field bg-light"
+                                                                        name="closing_date" id="closing_date"
+                                                                        value="15-07-2026"
+                                                                        placeholder="Select date" required readonly
+                                                                        disabled>
+                                                                </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="deal_stage"
+                                                                        class="form-label form-label-bold">Stage <span
+                                                                            class="text-danger">*</span></label>
+                                                                    <select class="form-select select2 deal-edit-field"
+                                                                        name="deal_stage" id="deal_stage" required
+                                                                        disabled>
+                                                                                                                                            </select>
+                                                                </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="amount"
+                                                                        class="form-label form-label-bold">Estimated
+                                                                        Deal Amount</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-text">₹</span>
+                                                                        <input type="number" step="0.01"
+                                                                            class="form-control bg-light" name="amount"
+                                                                            id="amount" value="1000.00"
+                                                                            readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 mb-3">
+                                                                    <label for="description"
+                                                                        class="form-label form-label-bold">Description</label>
+                                                                    <textarea class="form-control deal-edit-field bg-light"
+                                                                        name="description" id="description" rows="3"
+                                                                        readonly></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+
+                                            <!-- Right Column: Notes & Attachments -->
+                                            <div class="col-lg-4 mb-3">
+
+
+                                                <!-- Attachments Section -->
+                                                <div class="card deal-detail-card h-100 mb-0">
+                                                    <div class="card-custom-header">
+                                                        <h6 class="mb-0 text-primary fw-bold"><i
+                                                                class="fas fa-paperclip me-1"></i> Attachments</h6>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <form id="attachmentForm" enctype="multipart/form-data"
+                                                            class="mb-3">
+                                                            <div class="mb-2">
+                                                                <input type="file" class="form-control form-control-sm"
+                                                                    name="files[]" id="fileInput" multiple required onchange="validateFileSize(this)">
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-sm w-100"><i
+                                                                    class="fas fa-upload me-1"></i> Upload File</button>
+                                                        </form>
+
+                                                        <div class="table-responsive"
+                                                            style="max-height: 120px; overflow-y: auto;">
+                                                            <table class="table table-bordered table-sm">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>File Name</th>
+                                                                        <th class="text-center">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="attachmentsTableBody">
+                                                                    <!-- Dynamic Content -->
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Full-width Notes Section -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card deal-detail-card mb-3">
+                                                    <div
+                                                        class="card-custom-header d-flex justify-content-between align-items-center">
+                                                        <h6 class="mb-0 text-primary fw-bold"><i
+                                                                class="fas fa-sticky-note me-1"></i> Notes</h6>
+                                                        <button class="btn btn-primary btn-sm fw-bold px-3"
+                                                            id="btnNewNote" data-bs-toggle="modal"
+                                                            data-bs-target="#noteModal">
+                                                            <i class="fas fa-plus me-1"></i> Add Note
+                                                        </button>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="table-responsive"
+                                                            style="max-height: 400px; overflow-y: auto;">
+                                                            <table class="table table-bordered table-striped"
+                                                                id="notesTable" width="100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th width="5%">#</th>
+                                                                        <th width="50%">NOTE</th>
+                                                                        <th width="30%">CREATED BY & TIME</th>
+                                                                        <th width="15%" class="text-center">ACTIONS</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="notesTableBody">
+                                                                    <!-- Dynamic Content -->
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Full-width Calls List Section -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card deal-detail-card mb-3">
+                                                    <div
+                                                        class="card-custom-header d-flex justify-content-between align-items-center">
+                                                        <h6 class="mb-0 text-primary fw-bold"><i
+                                                                class="fas fa-phone-alt me-1"></i> Schedule Call</h6>
+                                                        <button class="btn btn-primary btn-sm" id="btnScheduleCall"
+                                                            data-bs-toggle="modal" data-bs-target="#scheduleCallModal">
+                                                            <i class="fas fa-calendar-plus me-1"></i> Schedule Call
+                                                        </button>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="table-responsive"
+                                                            style="max-height: 400px; overflow-y: auto;">
+                                                            <table class="table table-bordered table-striped"
+                                                                id="callsTable" width="100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th width="5%">#</th>
+                                                                        <th width="35%">SUBJECT</th>
+                                                                        <th width="25%">CALL DATE</th>
+                                                                        <th width="20%">AGENDA</th>
+                                                                        <th width="15%" class="text-center">ACTIONS</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="callsTableBody">
+                                                                    <!-- Dynamic Content -->
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Timeline Tab Pane -->
+                                    <div class="tab-pane fade text-muted px-1" id="timeline" role="tabpanel"
+                                        aria-labelledby="timeline-tab">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card deal-detail-card">
+                                                    <div class="card-custom-header">
+                                                        <h6 class="mb-0 text-primary fw-bold"><i
+                                                                class="fas fa-history me-1"></i> Deal Timeline & Logs
+                                                        </h6>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="timeline-wrapper p-3" id="timelineContainer"
+                                                            style="max-height: 600px; overflow-y: auto;">
+                                                            <!-- Dynamic Logs -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer mt-auto py-3 bg-white text-center">
+    <div class="container">
+        <span class="text-muted"> Copyright © <span id="year"></span> <a href="https://enlighteninfosystems.com" target="framename" class="text-dark fw-semibold">Enlighten Infosystems</a>.
+            Designed with <span class="bi bi-heart-fill text-danger"></span> by <a href="https://enlighteninfosystems.com" target="framename">
+                <span class="fw-semibold text-primary text-decoration-underline">Enlighten Infosystems</span>
+            </a> All rights reserved
+        </span>
+    </div>
+</footer>
+
+<!-- Lead Timeline Modal Component -->
+<div class="modal fade" id="leadTimelineModal" tabindex="-1" aria-labelledby="leadTimelineModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="leadTimelineModalLabel">Timeline History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body position-relative">
+                <!-- Loading Spinner -->
+                <div id="lead-timeline-loader" class="d-flex justify-content-center align-items-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                
+                <!-- Dynamic Content Container -->
+                <div id="lead-timeline-content" class="d-none">
+                    <!-- Timeline entries will be injected here via AJAX -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <!-- Schedule Call Modal -->
+    <div class="modal fade" id="scheduleCallModal" tabindex="-1" aria-labelledby="scheduleCallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="scheduleCallForm" novalidate>
+                    <input type="hidden" name="_token" value="" autocomplete="off">                    <input type="hidden" name="deal_id" value="25">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="scheduleCallModalLabel"><i
+                                class="fas fa-phone-alt text-primary me-2"></i>Schedule a Call</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="card-title text-muted mb-4 border-bottom pb-2">
+                            <i class="fas fa-info-circle me-1"></i> Call Information
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="call_date" class="form-label form-label-bold">Call Date <span
+                                        class="text-danger">*</span></label>
+                                <input type="date" class="form-control" name="call_date" id="call_date"
+                                    value="2026-07-15" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="call_time" class="form-label form-label-bold">Call Time <span
+                                        class="text-danger">*</span></label>
+                                <input type="time" class="form-control" name="call_time" id="call_time" value="11:00"
+                                    required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="call_subject" class="form-label form-label-bold">Subject <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="subject" id="call_subject"
+                                    placeholder="Enter call subject" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="call_agenda" class="form-label form-label-bold">Call Agenda</label>
+                                <textarea class="form-control" name="call_agenda" id="call_agenda" rows="3"
+                                    placeholder="Describe the agenda..."></textarea>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="call_assigned_to" class="form-label form-label-bold">Assign To</label>
+                                <select class="form-select select2-modal" name="assigned_to" id="call_assigned_to">
+                                    <option value="">Select Staff</option>
+                                                                    </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="btnSubmitCall"><i
+                                class="fas fa-check me-1"></i> Schedule</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Note Modal -->
+    <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="noteModalForm" novalidate>
+                    <input type="hidden" name="_token" value="" autocomplete="off">                    <input type="hidden" name="deal_id" value="25">
+                    <input type="hidden" name="id" id="note_edit_id" value="">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="noteModalLabel"><i
+                                class="fas fa-sticky-note text-primary me-2"></i><span
+                                id="noteModalTitleAction">Add</span> Note</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="noteModalInput" class="form-label form-label-bold">Note <span
+                                    class="text-danger">*</span></label>
+                            <textarea class="form-control" name="note" id="noteModalInput" rows="5"
+                                placeholder="Type your note here..." required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="note_assigned_to" class="form-label form-label-bold">Assign To</label>
+                            <select class="form-select select2-modal" name="assigned_to" id="note_assigned_to">
+                                <option value="">Select Staff</option>
+                                                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="toggleFollowUpDate">
+                                <label class="form-check-label form-label-bold" for="toggleFollowUpDate">Add Follow Up
+                                    Date?</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 d-none" id="followUpDateContainer">
+                            <label for="follow_up_date" class="form-label form-label-bold">Follow Up Date <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="follow_up_date" id="follow_up_date"
+                                placeholder="Select Follow Up Date" readonly>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="btnSubmitNote"><i
+                                class="fas fa-check me-1"></i> Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call Result Modal -->
+    <div class="modal fade" id="callResultModal" tabindex="-1" aria-labelledby="callResultModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="callResultForm" novalidate>
+                    <input type="hidden" name="_token" value="" autocomplete="off">                    <input type="hidden" name="id" id="result_call_id" value="">
+                    <input type="hidden" name="call_status" id="result_call_status" value="">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="callResultModalLabel"><i
+                                class="fas fa-comment-dots text-primary me-2"></i>Call Result</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="callResultInput" class="form-label form-label-bold">Call Result <span
+                                    class="text-danger">*</span></label>
+                            <textarea class="form-control" name="call_result" id="callResultInput" rows="5"
+                                placeholder="Type call result details here..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="btnSubmitCallResult"><i
+                                class="fas fa-check me-1"></i> Save Result</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+            <!-- Modal Complete Note Follow-up -->
+            <div class="modal fade" id="modalCompleteNote" tabindex="-1" aria-labelledby="modalCompleteNoteLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 shadow-lg">
+                        <div class="modal-header bg-light border-bottom-0">
+                            <h5 class="modal-title" id="modalCompleteNoteLabel">
+                                <i class="fas fa-check-double text-primary me-2"></i>Follow-up Result
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body p-4">
+                            <form id="formCompleteNote">
+                                <input type="hidden" name="_token" value="" autocomplete="off">                                <input type="hidden" name="id" id="completeNoteId">
+                                <input type="hidden" name="is_completed" id="completeNoteStatus">
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Result/Outcome Notes <span class="text-muted fw-normal">(Optional)</span></label>
+                                    <textarea class="form-control bg-light" name="result" id="completeNoteResult" rows="3" placeholder="Enter the result of this follow-up..."></textarea>
+                                </div>
+                                <div class="d-flex justify-content-end gap-2 mt-4">
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" id="btnSubmitNoteResult">
+                                        <i class="fas fa-check me-1"></i> Save Result
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <div class="scrollToTop">
+    <span class="arrow"><i class="fa-solid fa-circle-up fs-20"></i></span>
+</div>
+<div id="responsive-overlay"></div>
+
+    <script src="http://localhost/assets/admin-assets/libs/jquery/jquery.min.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/@popperjs/core/umd/popper.min.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="http://localhost/assets/admin-assets/js/defaultmenu.min.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/node-waves/waves.min.js"></script>
+<script src="http://localhost/assets/admin-assets/js/sticky.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/simplebar/simplebar.min.js"></script>
+<script src="http://localhost/assets/admin-assets/js/simplebar.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/jsvectormap/maps/world-merc.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/apexcharts/apexcharts.min.js"></script>
+<script src="http://localhost/assets/admin-assets/js/custom-switcher.min.js"></script>
+<script src="http://localhost/assets/admin-assets/js/custom.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/izitoast/js/iziToast.min.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/select2/select2.min.js"></script>
+<script src="http://localhost/assets/admin-assets/libs/flatpickr/flatpickr.min.js"></script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
+
+
+<script>
+    window.routes = window.routes || {};
+    window.routes.leadTimeline = "http://localhost/lead-timeline/get";
+</script>
+<script src="http://localhost/assets/admin-assets/js/leadTimeline.js"></script>
+<script>
+    function formatIndianCurrency(number) {
+        if (number === null || number === undefined || number === '' || isNaN(number)) {
+            return number;
+        }
+
+        number = parseFloat(number).toFixed(2);
+
+        let [integer, decimal] = number.split('.');
+
+        if (integer.length <= 3) {
+            return '₹' + integer + '.' + decimal;
+        }
+
+        let lastThree = integer.slice(-3);
+        let remaining = integer.slice(0, -3);
+
+        remaining = remaining.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
+
+        return '₹' + remaining + ',' + lastThree + '.' + decimal;
+    }
+
+
+    $(document).ready(function () {
+        let searchTimeout;
+
+
+
+        $('#typehead').on('input', function () {
+            clearTimeout(searchTimeout);
+            const query = $(this).val().trim();
+
+            if (query.length < 2) {
+                $('#search-results').html('');
+                return;
+            }
+
+            searchTimeout = setTimeout(function () {
+                $.ajax({
+                    url: 'http://localhost/quick/search',
+                    type: 'GET',
+                    data: {
+                        query: query
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        let html = '';
+                        let shortcutIndex = 1;
+
+                        if ((response.menus && response.menus.length > 0) || (
+                            response.submenus && response.submenus.length > 0
+                        )) {
+                            html += `<style>
+                                .active-search-item { background-color: #e9ecef !important; border-radius: 5px; }
+                                .search-app a { display: flex; width: 100%; align-items: center; text-decoration: none; }
+                            </style>`;
+
+                            if (response.menus && response.menus.length > 0) {
+                                html += '<p class="fw-semibold text-muted mb-2 fs-13">Menus</p>';
+                                html += '<ul class="ps-2">';
+                                response.menus.forEach(function (menu) {
+                                    let shortcut = (shortcutIndex <= 9) ? `Alt+${shortcutIndex}` : '';
+                                    let badge = shortcut ? `<span class="badge bg-primary ms-auto" style="font-size: 10px;">${shortcut}</span>` : '';
+                                    html += `
+                                        <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
+                                            <a href="${menu.url}">
+                                                <span>
+                                                    <i class="${menu.icon} me-2 fs-14 bg-primary-transparent p-2 rounded-circle"></i>
+                                                    ${menu.title}
+                                                </span>
+                                                ${badge}
+                                            </a>
+                                        </li>`;
+                                    shortcutIndex++;
+                                });
+                                html += '</ul>';
+                            }
+
+                            if (response.submenus && response.submenus.length > 0) {
+                                html += '<p class="fw-semibold text-muted mb-2 fs-13">Submenus</p>';
+                                html += '<ul class="ps-2">';
+                                response.submenus.forEach(function (submenu) {
+                                    let shortcut = (shortcutIndex <= 9) ? `Alt+${shortcutIndex}` : '';
+                                    let badge = shortcut ? `<span class="badge bg-primary ms-auto" style="font-size: 10px;">${shortcut}</span>` : '';
+                                    html += `
+                                        <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
+                                            <a href="${submenu.url}">
+                                                <span>
+                                                    ${submenu.icon}
+                                                    ${submenu.title} (${submenu.parent})
+                                                </span>
+                                                ${badge}
+                                            </a>
+                                        </li>`;
+                                    shortcutIndex++;
+                                });
+                                html += '</ul>';
+                            }
+
+                        } else {
+                            html += '<p class="text-muted">No results found</p>';
+                        }
+
+                        $('#search-results').html(html);
+                    },
+                    error: function (xhr) {
+                        console.error('Search error:', xhr.responseText);
+                    }
+                });
+            }, 300);
+        });
+
+        $(document).on('keydown', function (e) {
+
+            if (e.altKey && e.which >= 49 && e.which <= 57) {
+                let items = $('#search-results .search-app');
+                let index = e.which - 49; // 49 is '1'
+                if (items.length > index) {
+                    e.preventDefault();
+                    let href = items.eq(index).find('a').attr('href');
+                    if (href) window.location.href = href;
+                }
+            }
+        });
+
+        $('#typehead').on('keydown', function (e) {
+            let items = $('#search-results .search-app');
+            if (items.length === 0) return;
+
+            let activeIndex = items.index(items.filter('.active-search-item'));
+
+            if (e.which === 40) { // Arrow Down
+                e.preventDefault();
+                items.removeClass('active-search-item');
+                activeIndex = (activeIndex + 1) % items.length;
+                items.eq(activeIndex).addClass('active-search-item');
+            } else if (e.which === 38) { // Arrow Up
+                e.preventDefault();
+                items.removeClass('active-search-item');
+                activeIndex = activeIndex - 1;
+                if (activeIndex < 0) activeIndex = items.length - 1;
+                items.eq(activeIndex).addClass('active-search-item');
+            } else if (e.which === 13) { // Enter
+                e.preventDefault();
+                if (activeIndex >= 0) {
+                    let href = items.eq(activeIndex).find('a').attr('href');
+                    if (href) window.location.href = href;
+                } else if (items.length > 0) {
+                    let href = items.eq(0).find('a').attr('href');
+                    if (href) window.location.href = href;
+                }
+            }
+        });
+
+        $(document).on('keydown', function (e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'F') {
+                e.preventDefault();
+                $('#typehead').focus();
+                $('#headersearch').addClass('searchdrop');
+            }
+        });
+    });
+</script>    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+
+
+    <script>
+        // Global file size validation – defined outside document.ready so inline onchange can always access it
+        // Uses decimal MB (10,000,000 bytes) to match what macOS/Windows show users as "10 MB"
+        function validateFileSize(input) {
+            var maxBytes = 10 * 1000 * 1000; // 10MB in decimal (matches OS file size display)
+            var files = input.files;
+            if (files && files.length > 0) {
+                for (var i = 0; i < files.length; i++) {
+                    if (files[i].size > maxBytes) {
+                        if (typeof iziToast !== 'undefined') {
+                            iziToast.error({
+                                title: 'File Too Large',
+                                message: 'File "' + files[i].name + '" exceeds the maximum allowed size of 10MB. Please select a smaller file.',
+                                position: 'topRight',
+                                timeout: 5000
+                            });
+                        } else {
+                            alert('File "' + files[i].name + '" exceeds the maximum allowed size of 10MB.');
+                        }
+                        input.value = '';
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Flatpickr for Closing Date
+            flatpickr('#closing_date', {
+                dateFormat: 'd-m-Y',
+                allowInput: false,
+                disableMobile: true,
+                defaultDate: $('#closing_date').val() ? $('#closing_date').val() : new Date()
+            });
+
+            // Flatpickr for Note Follow Up Date
+            var followUpFlatpickr = flatpickr('#follow_up_date', {
+                dateFormat: 'd-m-Y',
+                allowInput: false,
+                disableMobile: true,
+                minDate: 'today',
+                static: true
+            });
+
+            // CSRF Token Setup
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Initialize Select2 - always open downward
+            $('.select2').each(function () {
+                $(this).select2({
+                    width: '100%'
+                });
+            });
+
+            // Modal Select2
+            $('#scheduleCallModal, #noteModal').on('shown.bs.modal', function () {
+                var $modal = $(this);
+                $modal.find('.select2-modal').each(function () {
+                    if (!$(this).hasClass('select2-hidden-accessible')) {
+                        $(this).select2({
+                            dropdownParent: $modal,
+                            width: '100%'
+                        });
+                    }
+                });
+            });
+
+            // --- DEFINITIVE FIX: Force ALL Select2 dropdowns to always open DOWNWARD ---
+            // Select2 appends to body with absolute positioning. When it detects insufficient
+            // space below, it adds .select2-dropdown--above and flips the top value to open upward.
+            // We intercept this and recalculate top using getBoundingClientRect + scrollY.
+            $(document).on('select2:open', function () {
+                setTimeout(function () {
+                    var $dropdown = $('.select2-dropdown--above');
+                    if ($dropdown.length) {
+                        var $openContainer = $('.select2-container--open');
+                        var $selection = $openContainer.find('.select2-selection');
+                        if ($selection.length) {
+                            var rect = $selection[0].getBoundingClientRect();
+                            var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                            // Force dropdown exactly below the selection input
+                            $dropdown.css({
+                                'top': (rect.bottom + scrollY) + 'px',
+                                'bottom': 'auto'
+                            });
+                        }
+                    }
+                }, 10);
+            });
+
+            const dealId = "25";
+
+            // Load Sub-features
+            loadCalls();
+            loadNotes();
+            loadAttachments();
+
+            // Initialize Select2 for City using AJAX
+            $('#city_id').select2({
+                ajax: {
+                    url: "http://localhost/location/cities",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            search: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        return {
+                            results: $.map(data.data, function (item) {
+                                return {
+                                    id: item.city_id,
+                                    text: item.city_name
+                                };
+                            }),
+                            pagination: {
+                                more: data.current_page < data.last_page
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                placeholder: 'Search City',
+                minimumInputLength: 2,
+                width: '100%'
+            });
+
+            // Auto-focus the search input when City dropdown opens (so user can type immediately)
+            $('#city_id').on('select2:open', function () {
+                setTimeout(function () {
+                    var searchField = document.querySelector('.select2-container--open .select2-search__field');
+                    if (searchField) {
+                        searchField.focus();
+                    }
+                }, 50);
+            });
+
+            // When City is selected, automatically fetch and fill State & Country (readonly fields)
+            $('#city_id').on('change', function () {
+                const cityId = $(this).val();
+                if (cityId) {
+                    $.get('/location/city/' + cityId, function (res) {
+                        if (res.status) {
+                            const data = res.data;
+
+                            // Fill State readonly display + hidden id
+                            if (data.state_id) {
+                                $('#state_display').val(data.state_name || '');
+                                $('#state_id').val(data.state_id);
+                            } else {
+                                $('#state_display').val('');
+                                $('#state_id').val('');
+                            }
+
+                            // Fill Country readonly display + hidden id
+                            if (data.country_id) {
+                                $('#country_display').val(data.country_name || '');
+                                $('#countries_id').val(data.country_id);
+                            } else {
+                                $('#country_display').val('');
+                                $('#countries_id').val('');
+                            }
+                        }
+                    });
+                } else {
+                    // Clear state and country if city is cleared
+                    $('#state_display').val('');
+                    $('#state_id').val('');
+                    $('#country_display').val('');
+                    $('#countries_id').val('');
+                }
+            });
+
+            // Store original values for cancel
+            var originalDealValues = {};
+
+            // Helper to lock all editable fields
+            function lockDealFields() {
+                $('#deal_name').prop('disabled', true).trigger('change');
+                $('#closing_date').prop('disabled', true).addClass('bg-light');
+                $('#deal_stage').prop('disabled', true).trigger('change');
+                $('#description').prop('readonly', true).addClass('bg-light');
+
+                $('#btnToggleEdit').removeClass('d-none');
+                $('#btnCancelEdit').addClass('d-none');
+                $('#saveDealDetailsBtn').addClass('d-none');
+            }
+
+            // Helper to unlock all editable fields
+            function unlockDealFields() {
+                $('#deal_name').prop('disabled', false).trigger('change');
+                $('#closing_date').prop('disabled', false).removeClass('bg-light');
+                $('#deal_stage').prop('disabled', false).trigger('change');
+                $('#description').prop('readonly', false).removeClass('bg-light');
+
+                // Reinitialise flatpickr for the date field
+                flatpickr('#closing_date', {
+                    dateFormat: 'd-m-Y',
+                    allowInput: true,
+                    disableMobile: true,
+                    defaultDate: $('#closing_date').val() ? $('#closing_date').val() : new Date()
+                });
+
+                $('#btnToggleEdit').addClass('d-none');
+                $('#btnCancelEdit').removeClass('d-none');
+                $('#saveDealDetailsBtn').removeClass('d-none');
+            }
+
+            // Toggle Edit button
+            $('#btnToggleEdit').on('click', function () {
+                // Save current values for cancel
+                originalDealValues = {
+                    product_ids: $('#deal_name').val(),
+                    closing_date: $('#closing_date').val(),
+                    deal_stage: $('#deal_stage').val(),
+                    description: $('#description').val()
+                };
+                unlockDealFields();
+            });
+
+            // Cancel Edit button
+            $('#btnCancelEdit').on('click', function () {
+                // Restore original values
+                $('#deal_name').val(originalDealValues.product_ids).trigger('change');
+                $('#closing_date').val(originalDealValues.closing_date);
+                $('#deal_stage').val(originalDealValues.deal_stage).trigger('change');
+                $('#description').val(originalDealValues.description);
+                lockDealFields();
+            });
+
+            // Update Deal details form submission
+            $('#dealDetailsForm').submit(function (e) {
+                e.preventDefault();
+
+                const productsSelected = $('#deal_name').val();
+                const closingDate = $('#closing_date').val();
+                const stage = $('#deal_stage').val();
+
+                if (!productsSelected || productsSelected.length === 0) {
+                    iziToast.error({ title: 'Validation Error', message: 'At least one product must be selected.', position: 'topRight' });
+                    return false;
+                }
+                if (!closingDate) {
+                    iziToast.error({ title: 'Validation Error', message: 'Closing Date is required.', position: 'topRight' });
+                    return false;
+                }
+                if (!stage) {
+                    iziToast.error({ title: 'Validation Error', message: 'Stage is required.', position: 'topRight' });
+                    return false;
+                }
+
+                $('#saveDealDetailsBtn').prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Updating...');
+
+                // Temporarily enable disabled fields for serialization
+                $('#deal_stage').prop('disabled', false);
+                $('#deal_name').prop('disabled', false);
+                const formData = $('#dealDetailsForm').serialize();
+                $('#deal_stage').prop('disabled', true);
+                $('#deal_name').prop('disabled', true);
+
+                $.ajax({
+                    url: "http://localhost/deal/details/update/25",
+                    type: 'POST',
+                    data: formData,
+                    success: function (res) {
+                        $('#saveDealDetailsBtn').prop('disabled', false).html('<i class="fas fa-save me-1"></i> Update Details');
+                        if (res.success) {
+                            iziToast.success({ title: 'Success', message: res.message, position: 'topRight' });
+                            if (res.amount !== undefined) {
+                                $('#amount').val(res.amount);
+                            }
+                            lockDealFields();
+                            loadLogs();
+                        } else {
+                            iziToast.error({ title: 'Error', message: res.message || 'Failed to update deal', position: 'topRight' });
+                        }
+                    },
+                    error: function (xhr) {
+                        $('#saveDealDetailsBtn').prop('disabled', false).html('<i class="fas fa-save me-1"></i> Update Details');
+                        iziToast.error({ title: 'Error', message: xhr.responseJSON?.message || 'Server error', position: 'topRight' });
+                    }
+                });
+            });
+
+            // Schedule Call
+            $('#scheduleCallForm').submit(function (e) {
+                e.preventDefault();
+
+                const date = $('#call_date').val();
+                const time = $('#call_time').val();
+                const subject = $('#call_subject').val().trim();
+
+                if (!date) {
+                    iziToast.error({ title: 'Validation Error', message: 'Call Date is required.', position: 'topRight' });
+                    return false;
+                }
+                if (!time) {
+                    iziToast.error({ title: 'Validation Error', message: 'Call Time is required.', position: 'topRight' });
+                    return false;
+                }
+                if (!subject) {
+                    iziToast.error({ title: 'Validation Error', message: 'Subject is required.', position: 'topRight' });
+                    return false;
+                }
+
+                $('#btnSubmitCall').prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Scheduling...');
+
+                $.ajax({
+                    url: "http://localhost/deal/details/schedule-call",
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (res) {
+                        $('#btnSubmitCall').prop('disabled', false).html('<i class="fas fa-check me-1"></i> Schedule');
+                        if (res.success) {
+                            iziToast.success({
+                                title: 'Success',
+                                message: res.message,
+                                position: 'topRight'
+                            });
+                            $('#scheduleCallModal').modal('hide');
+                            $('#scheduleCallForm')[0].reset();
+                            $('#call_assigned_to').val('').trigger('change');
+                            loadCalls();
+                            loadLogs();
+                        } else {
+                            iziToast.error({
+                                title: 'Error',
+                                message: res.message,
+                                position: 'topRight'
+                            });
+                        }
+                    },
+                    error: function (xhr) {
+                        $('#btnSubmitCall').prop('disabled', false).html('<i class="fas fa-check me-1"></i> Schedule');
+                        iziToast.error({
+                            title: 'Error',
+                            message: xhr.responseJSON?.message || 'Server error',
+                            position: 'topRight'
+                        });
+                    }
+                });
+            });
+
+            // Toggle Follow Up Date container visibility
+            $('#toggleFollowUpDate').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#followUpDateContainer').removeClass('d-none');
+                } else {
+                    $('#followUpDateContainer').addClass('d-none');
+                    $('#follow_up_date').val('');
+                    if (followUpFlatpickr) {
+                        followUpFlatpickr.clear();
+                    }
+                }
+            });
+
+            // Add/Edit Note Modal triggers
+            $('#btnNewNote').click(function () {
+                $('#noteModalForm')[0].reset();
+                $('#note_edit_id').val('');
+                if (followUpFlatpickr) {
+                    followUpFlatpickr.clear();
+                }
+                $('#note_assigned_to').val('').trigger('change');
+                $('#toggleFollowUpDate').prop('checked', false).trigger('change');
+                $('#noteModalTitleAction').text('Add');
+            });
+
+            $(document).on('click', '.edit-note-btn', function () {
+                const id = $(this).data('id');
+                const note = decodeURIComponent($(this).data('note'));
+                const followUpDate = $(this).data('follow-up-date');
+                const assignedTo = $(this).data('assigned-to');
+
+                $('#note_edit_id').val(id);
+                $('#noteModalInput').val(note);
+                $('#note_assigned_to').val(assignedTo || '').trigger('change');
+
+                if (followUpDate && followUpDate !== 'N/A') {
+                    $('#toggleFollowUpDate').prop('checked', true);
+                    $('#followUpDateContainer').removeClass('d-none');
+                    $('#follow_up_date').val(followUpDate);
+                    if (followUpFlatpickr) {
+                        followUpFlatpickr.setDate(followUpDate, false);
+                    }
+                } else {
+                    $('#toggleFollowUpDate').prop('checked', false);
+                    $('#followUpDateContainer').addClass('d-none');
+                    $('#follow_up_date').val('');
+                    if (followUpFlatpickr) {
+                        followUpFlatpickr.clear();
+                    }
+                }
+
+                $('#noteModalTitleAction').text('Edit');
+                $('#noteModal').modal('show');
+            });
+
+            // Note Form submission (both Add and Edit)
+            $('#noteModalForm').submit(function (e) {
+                e.preventDefault();
+                const noteText = $('#noteModalInput').val().trim();
+                if (!noteText) {
+                    iziToast.error({
+                        title: 'Validation Error',
+                        message: 'Note content is required.',
+                        position: 'topRight'
+                    });
+                    return;
+                }
+
+                let followUpDateVal = '';
+                if ($('#toggleFollowUpDate').is(':checked')) {
+                    followUpDateVal = $('#follow_up_date').val().trim();
+                    if (!followUpDateVal) {
+                        iziToast.error({
+                            title: 'Validation Error',
+                            message: 'Please select a Follow Up Date.',
+                            position: 'topRight'
+                        });
+                        return;
+                    }
+                }
+
+                const editId = $('#note_edit_id').val();
+                const url = editId ? "http://localhost/deal/details/update-note" : "http://localhost/deal/details/add-note";
+
+                const postData = {
+                    note: noteText,
+                    follow_up_date: followUpDateVal,
+                    assigned_to: $('#note_assigned_to').val() || null
+                };
+                if (editId) {
+                    postData.id = editId;
+                } else {
+                    postData.deal_id = dealId;
+                }
+
+                $('#btnSubmitNote').prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Saving...');
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: postData,
+                    success: function (res) {
+                        $('#btnSubmitNote').prop('disabled', false).html('<i class="fas fa-check me-1"></i> Save');
+                        if (res.success) {
+                            iziToast.success({
+                                title: 'Success',
+                                message: res.message,
+                                position: 'topRight'
+                            });
+                            $('#noteModal').modal('hide');
+                            loadNotes();
+                            loadLogs();
+                        } else {
+                            iziToast.error({ title: 'Error', message: res.message, position: 'topRight' });
+                        }
+                    },
+                    error: function () {
+                        $('#btnSubmitNote').prop('disabled', false).html('<i class="fas fa-check me-1"></i> Save');
+                        iziToast.error({ title: 'Error', message: 'Failed to save note.', position: 'topRight' });
+                    }
+                });
+            });
+
+
+            // Upload Attachment
+            $('#attachmentForm').submit(function (e) {
+                e.preventDefault();
+                const files = $('#fileInput')[0].files;
+                if (files.length === 0) return;
+
+                // Validate file size (10MB limit per file)
+                const maxSizeBytes = 10 * 1024 * 1024; // 10MB
+                for (let i = 0; i < files.length; i++) {
+                    if (files[i].size > maxSizeBytes) {
+                        iziToast.error({
+                            title: 'Validation Error',
+                            message: `File "${files[i].name}" exceeds the maximum limit of 10MB.`,
+                            position: 'topRight'
+                        });
+                        return;
+                    }
+                }
+
+                const formData = new FormData();
+                formData.append('deal_id', dealId);
+                for (let i = 0; i < files.length; i++) {
+                    formData.append('files[]', files[i]);
+                }
+
+                const $btn = $(this).find('button[type="submit"]');
+                const originalHtml = $btn.html();
+                $btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-1"></span> Uploading...');
+
+                $.ajax({
+                    url: "http://localhost/deal/details/upload-attachment",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        $btn.prop('disabled', false).html(originalHtml);
+                        if (res.success) {
+                            iziToast.success({
+                                title: 'Success',
+                                message: res.message,
+                                position: 'topRight'
+                            });
+                            $('#fileInput').val('');
+                            loadAttachments();
+                            loadLogs();
+                        } else {
+                            iziToast.error({ title: 'Error', message: res.message, position: 'topRight' });
+                        }
+                    },
+                    error: function (xhr) {
+                        $btn.prop('disabled', false).html(originalHtml);
+                        let errMsg = 'Failed to upload attachments.';
+                        if (xhr.status === 413) {
+                            errMsg = 'The total upload size is too large. Each file must not exceed 10MB.';
+                        } else if (xhr.status === 419) {
+                            errMsg = 'Your session has expired. Please refresh the page and try again.';
+                        } else if (xhr.responseJSON) {
+                            if (xhr.responseJSON.errors) {
+                                let errList = [];
+                                Object.keys(xhr.responseJSON.errors).forEach(function (key) {
+                                    errList.push(xhr.responseJSON.errors[key].join(', '));
+                                });
+                                if (errList.length > 0) {
+                                    errMsg = errList.join('<br>');
+                                } else if (xhr.responseJSON.message) {
+                                    errMsg = xhr.responseJSON.message;
+                                }
+                            } else if (xhr.responseJSON.message) {
+                                errMsg = xhr.responseJSON.message;
+                            }
+                        }
+                        iziToast.error({ title: 'Error', message: errMsg, position: 'topRight' });
+                    }
+                });
+            });
+
+            // Delete Handlers
+            $(document).on('click', '.delete-call-btn', function () {
+                const id = $(this).data('id');
+                iziToast.question({
+                    timeout: false,
+                    close: false,
+                    overlay: true,
+                    displayMode: 'once',
+                    title: 'Confirm Delete',
+                    message: 'Are you sure you want to delete this call?',
+                    position: 'center',
+                    buttons: [
+                        ['<button><b>Yes, Delete</b></button>', function (instance, toast) {
+                            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                            $.post("http://localhost/deal/details/delete-call", { id: id }, function (res) {
+                                if (res.success) {
+                                    iziToast.success({ title: 'Deleted', message: res.message, position: 'topRight' });
+                                    loadCalls();
+                                    loadLogs();
+                                }
+                            });
+                        }, true],
+                        ['<button>Cancel</button>', function (instance, toast) {
+                            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        }],
+                    ],
+                });
+            });
+
+            $(document).on('click', '.delete-note-btn', function () {
+                let noteId = $(this).data('id');
+                iziToast.question({
+                    timeout: 20000,
+                    close: false,
+                    overlay: true,
+                    displayMode: 'once',
+                    id: 'question',
+                    zindex: 999,
+                    title: 'Confirm',
+                    message: 'Are you sure you want to delete this note?',
+                    position: 'center',
+                    buttons: [
+                        ['<button><b>YES</b></button>', function (instance, toast) {
+                            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                            $.ajax({
+                                url: "http://localhost/crm/activity/delete-note",
+                                type: "POST",
+                                data: {
+                                    _token: "",
+                                    id: noteId
+                                },
+                                success: function (res) {
+                                    if (res.success) {
+                                        iziToast.success({ title: 'Success', message: res.message, position: 'topRight' });
+                                        loadNotes();
+                                    } else {
+                                        iziToast.error({ title: 'Error', message: res.message, position: 'topRight' });
+                                    }
+                                },
+                                error: function (xhr) {
+                                    iziToast.error({ title: 'Error', message: xhr.responseJSON?.message || 'Server Error', position: 'topRight' });
+                                }
+                            });
+                        }, true],
+                        ['<button>NO</button>', function (instance, toast) {
+                            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        }]
+                    ]
+                });
+            });
+
+            // Note Follow-up Status logic
+            $(document).on('click', '.complete-note-btn', function() {
+                let noteId = $(this).data('id');
+                let status = $(this).data('status');
+                $('#completeNoteId').val(noteId);
+                $('#completeNoteStatus').val(status);
+                $('#completeNoteResult').val('');
+                $('#modalCompleteNote').modal('show');
+            });
+
+            $('#formCompleteNote').on('submit', function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $('#btnSubmitNoteResult').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Saving...');
+                $.post("http://localhost/crm/activity/update-note-status", formData, function(res) {
+                    $('#btnSubmitNoteResult').prop('disabled', false).html('<i class="fas fa-check me-1"></i> Save Result');
+                    if(res.success) {
+                        $('#modalCompleteNote').modal('hide');
+                        iziToast.success({ title: 'Success', message: res.message, position: 'topRight' });
+                        loadNotes();
+                    } else {
+                        iziToast.error({ title: 'Error', message: res.message, position: 'topRight' });
+                    }
+                }).fail(function(xhr) {
+                    $('#btnSubmitNoteResult').prop('disabled', false).html('<i class="fas fa-check me-1"></i> Save Result');
+                    iziToast.error({ title: 'Error', message: xhr.responseJSON?.message || 'Server error', position: 'topRight' });
+                });
+            });
+
+            $(document).on('click', '.delete-attachment-btn', function () {
+                const id = $(this).data('id');
+                iziToast.question({
+                    timeout: false,
+                    close: false,
+                    overlay: true,
+                    displayMode: 'once',
+                    title: 'Confirm Delete',
+                    message: 'Are you sure you want to delete this attachment?',
+                    position: 'center',
+                    buttons: [
+                        ['<button><b>Yes, Delete</b></button>', function (instance, toast) {
+                            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                            $.post("http://localhost/deal/details/delete-attachment", { id: id }, function (res) {
+                                if (res.success) {
+                                    iziToast.success({ title: 'Deleted', message: res.message, position: 'topRight' });
+                                    loadAttachments();
+                                    loadLogs();
+                                }
+                            });
+                        }, true],
+                        ['<button>Cancel</button>', function (instance, toast) {
+                            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        }],
+                    ],
+                });
+            });
+
+            // Load data functions
+            var callsTable;
+            function loadCalls() {
+                $.get(`/deal/details/calls/${dealId}`, function (res) {
+                    if (res.success) {
+                        if ($.fn.DataTable.isDataTable('#callsTable')) {
+                            $('#callsTable').DataTable().destroy();
+                        }
+
+                        let html = '';
+                        res.data.forEach((call, index) => {
+                            let statusText = 'Pending';
+                            let statusClass = 'bg-warning';
+                            if (call.call_status == 1) { statusText = 'Completed'; statusClass = 'bg-success'; }
+                            else if (call.call_status == 2) { statusText = 'Rejected'; statusClass = 'bg-danger'; }
+
+                            let actionButtons = '';
+                            if (call.call_status == 0) {
+                                actionButtons = `
+                                    <button class="btn btn-sm btn-success btn-complete-call px-2 me-1" data-id="${call.id}" title="Complete Call">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger btn-cancel-call px-2 me-1" data-id="${call.id}" title="Cancel Call">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                `;
+                            }
+
+                            let agendaHtml = `<div>${call.call_agenda || '-'}</div>`;
+                            if (call.call_result) {
+                                agendaHtml += `<div class="text-muted mt-1" style="font-size: 0.85em; color: #888; font-style: italic;">Result: ${call.call_result}</div>`;
+                            }
+
+                            html += `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>
+                                        <div><strong>${call.subject}</strong></div>
+                                        <span class="badge ${statusClass} mt-1">${statusText}</span>
+                                    </td>
+                                    <td>${call.formatted_time}</td>
+                                    <td>${agendaHtml}</td>
+                                    <td class="text-center">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            ${actionButtons}
+                                            <button class="btn btn-sm btn-danger delete-call-btn" data-id="${call.id}">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+
+                        $('#callsTableBody').html(html);
+
+                        callsTable = $('#callsTable').DataTable({
+                            autoWidth: false,
+                            responsive: true,
+                            order: [[0, 'asc']],
+                            columnDefs: [
+                                { orderable: false, targets: [1, 3, 4] },
+                                { className: 'align-middle', targets: '_all' }
+                            ]
+                        });
+                    }
+                });
+            }
+
+            // Click Complete Call button
+            $(document).on('click', '.btn-complete-call', function () {
+                const id = $(this).data('id');
+                $('#result_call_id').val(id);
+                $('#result_call_status').val(1); // 1 = Completed
+                $('#callResultInput').val('');
+                $('#callResultModalLabel').html('<i class="fas fa-check text-success me-2"></i>Complete Call - Result');
+                $('#callResultModal').modal('show');
+            });
+
+            // Click Cancel Call button
+            $(document).on('click', '.btn-cancel-call', function () {
+                const id = $(this).data('id');
+                $('#result_call_id').val(id);
+                $('#result_call_status').val(2); // 2 = Rejected/Cancelled
+                $('#callResultInput').val('');
+                $('#callResultModalLabel').html('<i class="fas fa-times text-danger me-2"></i>Cancel Call - Result');
+                $('#callResultModal').modal('show');
+            });
+
+            // Call Result Form Submit
+            $('#callResultForm').submit(function (e) {
+                e.preventDefault();
+
+                const id = $('#result_call_id').val();
+                const callStatus = $('#result_call_status').val();
+                const callResult = $('#callResultInput').val().trim();
+
+                if (!callResult) {
+                    iziToast.error({ title: 'Validation Error', message: 'Call Result message is required.', position: 'topRight' });
+                    return false;
+                }
+
+                $('#btnSubmitCallResult').prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Saving...');
+
+                $.post("http://localhost/deal/details/update-call-status", {
+                    _token: "",
+                    id: id,
+                    call_status: callStatus,
+                    call_result: callResult
+                }, function (res) {
+                    $('#btnSubmitCallResult').prop('disabled', false).html('<i class="fas fa-check me-1"></i> Save Result');
+                    if (res.success) {
+                        $('#callResultModal').modal('hide');
+                        iziToast.success({ title: 'Success', message: res.message, position: 'topRight' });
+                        loadCalls();
+                        loadLogs();
+                    } else {
+                        iziToast.error({ title: 'Error', message: res.message, position: 'topRight' });
+                    }
+                }).fail(function (xhr) {
+                    $('#btnSubmitCallResult').prop('disabled', false).html('<i class="fas fa-check me-1"></i> Save Result');
+                    iziToast.error({ title: 'Error', message: xhr.responseJSON?.message || 'Server error', position: 'topRight' });
+                });
+            });
+
+            var notesTable;
+            function loadNotes() {
+                $.get(`/deal/details/notes/${dealId}`, function (res) {
+                    if (res.success) {
+                        if ($.fn.DataTable.isDataTable('#notesTable')) {
+                            $('#notesTable').DataTable().destroy();
+                        }
+
+                        let html = '';
+                        res.data.forEach((note, index) => {
+                            let followUpBadge = '';
+                            if (note.follow_up_date && note.formatted_follow_up_date !== 'N/A') {
+                                followUpBadge = `<br><span class="badge bg-light text-primary border mt-2"><i class="far fa-calendar-alt me-1"></i>Follow Up: ${note.formatted_follow_up_date}</span>`;
+                            }
+                            html += `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>
+                                        <div class="text-break">${note.note}</div>
+                                        ${followUpBadge}
+                                        ${note.is_completed == 1 ? `<div class="mt-2"><span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Completed</span> ${note.result ? `<span class="text-muted small ms-1">${note.result}</span>` : ''}</div>` : ''}
+                                        ${note.is_completed == 2 ? `<div class="mt-2"><span class="badge bg-danger"><i class="fas fa-times-circle me-1"></i>Cancelled</span> ${note.result ? `<span class="text-muted small ms-1">${note.result}</span>` : ''}</div>` : ''}
+                                    </td>
+                                    <td>
+                                        <strong>${note.owner_name}</strong><br>
+                                        <small class="text-muted">Assigned: <strong class="text-secondary">${note.assigned_name || 'None'}</strong></small><br>
+                                        <small class="text-muted">Created: ${note.formatted_date}</small>
+                                        ${note.is_edited ? `<br><small class="text-muted">Updated: ${note.formatted_updated_at}</small>` : ''}
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            ${note.follow_up_date && note.is_completed == 0 ? `
+                                            <button class="btn btn-sm btn-success complete-note-btn px-2 me-1" data-id="${note.id}" data-status="1" title="Mark as Completed">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger complete-note-btn px-2 me-1" data-id="${note.id}" data-status="2" title="Mark as Cancelled">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                            ` : ''}
+                                            <button class="btn btn-sm btn-info edit-note-btn me-1" data-id="${note.id}" data-note="${encodeURIComponent(note.note)}" data-follow-up-date="${note.formatted_follow_up_date || 'N/A'}" data-assigned-to="${note.assigned_to || ''}">
+                                                <i class="fas fa-pencil-alt text-white"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger delete-note-btn" data-id="${note.id}">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+
+                        $('#notesTableBody').html(html);
+                        notesTable = $('#notesTable').DataTable({
+                            autoWidth: false,
+                            responsive: true,
+                            order: [[0, 'asc']],
+                            columnDefs: [
+                                { orderable: false, targets: [1, 2, 3] },
+                                { className: 'align-middle', targets: '_all' }
+                            ]
+                        });
+                    }
+                });
+            }
+
+            function getFileIconClass(fileName) {
+                const ext = fileName.split('.').pop().toLowerCase();
+                switch (ext) {
+                    case 'pdf': return 'far fa-file-pdf text-danger';
+                    case 'png':
+                    case 'jpg':
+                    case 'jpeg':
+                    case 'gif':
+                    case 'svg':
+                    case 'webp': return 'far fa-file-image text-success';
+                    case 'doc':
+                    case 'docx': return 'far fa-file-word text-info';
+                    case 'xls':
+                    case 'xlsx':
+                    case 'csv': return 'far fa-file-excel text-success';
+                    case 'zip':
+                    case 'rar':
+                    case '7z':
+                    case 'tar':
+                    case 'gz': return 'far fa-file-archive text-warning';
+                    case 'txt':
+                    case 'log': return 'far fa-file-alt text-secondary';
+                    default: return 'far fa-file text-muted';
+                }
+            }
+
+            function loadAttachments() {
+                $.get(`/deal/details/attachments/${dealId}`, function (res) {
+                    if (res.success) {
+                        let html = '';
+                        res.data.forEach(att => {
+                            const iconClass = getFileIconClass(att.file_name);
+                            html += `
+                                <tr>
+                                    <td>
+                                        <a href="${att.file_path}" target="_blank" class="text-decoration-none">
+                                            <i class="${iconClass} me-1"></i> ${att.file_name}
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-danger delete-attachment-btn" data-id="${att.id}">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+                        if (html === '') {
+                            html = '<tr><td colspan="2" class="text-center text-muted">No attachments.</td></tr>';
+                        }
+                        $('#attachmentsTableBody').html(html);
+                    }
+                });
+            }
+
+            // Listen for Timeline tab click
+            $('#timeline-tab').on('click shown.bs.tab', function () {
+                loadLogs();
+            });
+
+            function loadLogs() {
+                $('#timelineContainer').html('<div class="text-center text-muted py-5"><span class="spinner-border text-primary" role="status"></span><br>Loading logs...</div>');
+                let logsUrl = "http://localhost/deal/details/logs/:id".replace(':id', dealId);
+                $.get(logsUrl, function (res) {
+                    if (res.success) {
+                        if (!res.data || res.data.length === 0) {
+                            $('#timelineContainer').html('<div class="text-center text-muted py-5"><i class="far fa-clock fa-2x mb-3 text-light"></i><br>No logs recorded for this deal.</div>');
+                            return;
+                        }
+
+                        let groups = {};
+                        let dateOrder = [];
+                        res.data.forEach(log => {
+                            let dateStr = 'Unknown Date';
+                            let timeStr = '';
+                            if (log.formatted_date) {
+                                let parts = log.formatted_date.split(' ');
+                                if (parts.length >= 3) {
+                                    dateStr = parts[0] + ' ' + parts[1] + ' ' + parts[2];
+                                    timeStr = parts.slice(3).join(' ');
+                                } else {
+                                    dateStr = log.formatted_date;
+                                }
+                            }
+
+                            if (!groups[dateStr]) {
+                                groups[dateStr] = [];
+                                dateOrder.push(dateStr);
+                            }
+                            groups[dateStr].push({
+                                log: log,
+                                time: timeStr
+                            });
+                        });
+
+                        let html = '';
+                        dateOrder.forEach(dateStr => {
+                            html += `
+                                <div class="timeline-group">
+                                    <div class="timeline-date-header">
+                                        <span class="timeline-date-badge">${dateStr}</span>
+                                    </div>
+                                    <div class="timeline-items-container">
+                                        <div class="timeline-line"></div>
+                            `;
+
+                            groups[dateStr].forEach(item => {
+                                let log = item.log;
+                                let timeStr = item.time;
+
+                                let markerClass = 'bg-primary';
+                                let icon = '<i class="fas fa-info"></i>';
+                                let boldTitle = 'Activity';
+
+                                if (log.action === 'create' || log.action === 'convert') {
+                                    markerClass = 'bg-success';
+                                    icon = '<i class="fas fa-plus"></i>';
+                                    boldTitle = 'Created';
+                                } else if (log.action === 'deal_updated' || log.action === 'update') {
+                                    markerClass = 'bg-primary';
+                                    icon = '<i class="fas fa-pen"></i>';
+                                    boldTitle = 'Updated';
+                                } else if (log.action === 'call_scheduled') {
+                                    markerClass = 'bg-info';
+                                    icon = '<i class="fas fa-phone-alt"></i>';
+                                    boldTitle = 'Call activity';
+                                } else if (log.action === 'call_status_updated') {
+                                    markerClass = 'bg-info';
+                                    icon = '<i class="fas fa-phone-volume"></i>';
+                                    boldTitle = 'Call activity';
+                                } else if (log.action === 'call_deleted') {
+                                    markerClass = 'bg-danger';
+                                    icon = '<i class="fas fa-phone-slash"></i>';
+                                    boldTitle = 'Call activity';
+                                } else if (log.action === 'note_added') {
+                                    markerClass = 'bg-warning';
+                                    icon = '<i class="fas fa-sticky-note"></i>';
+                                    boldTitle = 'Note Added';
+                                } else if (log.action === 'note_updated') {
+                                    markerClass = 'bg-warning';
+                                    icon = '<i class="fas fa-edit"></i>';
+                                    boldTitle = 'Note Updated';
+                                } else if (log.action === 'note_deleted') {
+                                    markerClass = 'bg-danger';
+                                    icon = '<i class="fas fa-trash-alt"></i>';
+                                    boldTitle = 'Note Deleted';
+                                } else if (log.action === 'attachment_uploaded') {
+                                    markerClass = 'bg-info';
+                                    icon = '<i class="fas fa-paperclip"></i>';
+                                    boldTitle = 'Attachment';
+                                } else if (log.action === 'attachment_deleted') {
+                                    markerClass = 'bg-danger';
+                                    icon = '<i class="fas fa-trash"></i>';
+                                    boldTitle = 'Attachment';
+                                } else if (log.action === 'stage_updated') {
+                                    markerClass = 'bg-success';
+                                    icon = '<i class="fas fa-layer-group"></i>';
+                                    boldTitle = 'Stage Updated';
+                                } else if (log.action === 'delete') {
+                                    markerClass = 'bg-danger';
+                                    icon = '<i class="fas fa-trash-alt"></i>';
+                                    boldTitle = 'Deleted';
+                                } else if (log.action === 'revision') {
+                                    markerClass = 'bg-warning';
+                                    icon = '<i class="fas fa-code-branch"></i>';
+                                    boldTitle = 'Revision';
+                                }
+
+                                let extraHtml = '';
+                                if (log.is_quotation_log) {
+                                    let collapseId = 'collapseLog_q_' + log.log_id;
+                                    let basePdfUrl = "http://localhost/quotation/pdf/:id";
+                                    let pdfUrl = basePdfUrl.replace(':id', log.enc_quotation_id);
+                                    
+                                    let payloadHtml = '';
+                                    if (log.parsed_payload) {
+                                        let p = log.parsed_payload;
+                                        
+                                        if (p.quotation_no) {
+                                            payloadHtml = `
+                                            <div class="mt-2 border border-light-subtle rounded-3 p-3 bg-white shadow-sm" style="font-size: 12px;">
+                                                <div class="row gy-3 gx-2">
+                                                    <div class="col-sm-6">
+                                                        <span class="text-muted d-block text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.5px;">Quotation No</span>
+                                                        <span class="fw-bold text-dark" style="font-size: 13px;">${p.quotation_no}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="text-muted d-block text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.5px;">Grand Total</span>
+                                                        <span class="fw-bold text-primary" style="font-size: 13px;">${p.currency || '₹'} ${parseFloat(p.grand_total || 0).toLocaleString('en-IN', {minimumFractionDigits: 2})}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="text-muted d-block text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.5px;">Customer Name</span>
+                                                        <span class="fw-medium text-dark">${p.customer_name || 'N/A'}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="text-muted d-block text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.5px;">Email</span>
+                                                        <span class="text-dark">${p.email || 'N/A'}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="text-muted d-block text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.5px;">Type</span>
+                                                        <span class="badge bg-light text-dark border text-capitalize">${p.quotation_type || 'N/A'}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="text-muted d-block text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.5px;">Date</span>
+                                                        <span class="text-dark">${p.quotation_date ? new Date(p.quotation_date).toLocaleDateString('en-GB') : 'N/A'}</span>
+                                                    </div>
+                                                </div>
+                                            </div>`;
+                                        } 
+                                        else if (p.items_created || p.items_updated || p.items_deleted) {
+                                            let itemsHtml = '';
+                                            
+                                            if (p.items_created && p.items_created.length > 0) {
+                                                itemsHtml += `<div class="mb-3"><span class="badge bg-success mb-2"><i class="fas fa-plus me-1"></i> Added Items (${p.items_created.length})</span>`;
+                                                p.items_created.forEach(i => {
+                                                    itemsHtml += `<div class="d-flex justify-content-between align-items-center small text-muted border-bottom pb-2 mb-2">
+                                                        <div class="d-flex flex-column">
+                                                            <span class="fw-semibold text-dark">Product ID: ${i.product_id}</span>
+                                                            <span style="font-size: 11px;">Qty: ${i.qty} @ ${i.unit_price}</span>
+                                                        </div>
+                                                        <span class="fw-bold text-success">₹${parseFloat(i.total || 0).toLocaleString('en-IN', {minimumFractionDigits: 2})}</span>
+                                                    </div>`;
+                                                });
+                                                itemsHtml += `</div>`;
+                                            }
+                                            if (p.items_updated && p.items_updated.length > 0) {
+                                                itemsHtml += `<div class="mb-3"><span class="badge bg-primary mb-2"><i class="fas fa-pen me-1"></i> Updated Items (${p.items_updated.length})</span>`;
+                                                p.items_updated.forEach(i => {
+                                                    itemsHtml += `<div class="d-flex justify-content-between align-items-center small text-muted border-bottom pb-2 mb-2">
+                                                        <div class="d-flex flex-column">
+                                                            <span class="fw-semibold text-dark">Product ID: ${i.product_id}</span>
+                                                            <span style="font-size: 11px;">Qty: ${i.qty} @ ${i.unit_price}</span>
+                                                        </div>
+                                                        <span class="fw-bold text-primary">₹${parseFloat(i.total || 0).toLocaleString('en-IN', {minimumFractionDigits: 2})}</span>
+                                                    </div>`;
+                                                });
+                                                itemsHtml += `</div>`;
+                                            }
+                                            if (p.items_deleted && p.items_deleted.length > 0) {
+                                                itemsHtml += `<div class="mb-3"><span class="badge bg-danger mb-2"><i class="fas fa-trash me-1"></i> Removed Items (${p.items_deleted.length})</span>`;
+                                                p.items_deleted.forEach(i => {
+                                                    itemsHtml += `<div class="small text-muted border-bottom pb-2 mb-2"><i class="fas fa-minus-circle text-danger me-1"></i> Item ID: ${i.item_id} removed</div>`;
+                                                });
+                                                itemsHtml += `</div>`;
+                                            }
+                                            
+                                            payloadHtml = `
+                                            <div class="mt-2 border border-light-subtle rounded-3 p-3 bg-white shadow-sm" style="font-size: 12px; max-height: 250px; overflow-y: auto;">
+                                                ${itemsHtml || '<span class="text-muted"><i class="fas fa-info-circle me-1"></i> No items changed</span>'}
+                                            </div>`;
+                                        }
+                                        else {
+                                            payloadHtml = `<div class="mt-2 bg-light p-2 rounded-3 border text-start" style="max-height: 200px; overflow-y: auto;">
+                                                <pre class="mb-0" style="white-space: pre-wrap; font-size: 11px;"><code>${JSON.stringify(p, null, 2)}</code></pre>
+                                            </div>`;
+                                        }
+                                    }
+
+                                    extraHtml = `
+                                    <div class="mt-2 w-100">
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-xs btn-outline-secondary py-0 px-2" style="font-size: 11px;" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}">
+                                                <i class="fas fa-code me-1"></i> Payload
+                                            </button>
+                                            <a href="${pdfUrl}" target="_blank" class="btn btn-xs btn-outline-danger py-0 px-2" style="font-size: 11px;">
+                                                <i class="fas fa-file-pdf me-1"></i> PDF
+                                            </a>
+                                        </div>
+                                        <div class="collapse mt-2" id="${collapseId}">
+                                            ${payloadHtml}
+                                        </div>
+                                    </div>
+                                    `;
+                                }
+
+                                html += `
+                                    <div class="timeline-item-row d-flex align-items-start justify-content-between">
+                                        <div class="timeline-marker-circle ${markerClass} flex-shrink-0 mt-1">
+                                            ${icon}
+                                        </div>
+                                        <div class="d-flex flex-column flex-grow-1 w-100" style="min-width: 0;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="timeline-item-time text-muted me-3">
+                                                    <i class="far fa-clock me-1"></i> ${timeStr}
+                                                </div>
+                                                <div class="timeline-item-description text-wrap text-break">
+                                                    <strong>${boldTitle}</strong> - ${log.description}
+                                                </div>
+                                            </div>
+                                            ${extraHtml}
+                                        </div>
+                                        <div class="timeline-item-by ms-3 flex-shrink-0 mt-1">
+                                            <span class="badge rounded-pill">By ${log.performed_by_name}</span>
+                                        </div>
+
+                                    </div>
+                                `;
+                            });
+
+                            html += `
+                                    </div>
+                                </div>
+                            `;
+                        });
+
+                        $('#timelineContainer').html(html);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

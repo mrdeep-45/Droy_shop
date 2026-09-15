@@ -1,0 +1,148 @@
+.folder-card {
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    border-radius: 14px;
+    /* Slightly tighter border radius */
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.folder-card:hover {
+    transform: translateY(-5px);
+    /* More subtle hover lift */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.05) !important;
+    border-color: rgba(226, 232, 240, 0) !important;
+}
+
+.folder-card::after {
+    content: '\f07b';
+    font-family: 'FontAwesome';
+    position: absolute;
+    font-size: 80px;
+    /* Reduced watermark size */
+    color: rgba(0, 0, 0, 0.02);
+    bottom: -15px;
+    right: -10px;
+    z-index: -1;
+    transform: rotate(-10deg);
+    transition: all 0.4s ease;
+}
+
+.folder-card:hover::after {
+    color: rgba(0, 0, 0, 0.04);
+    transform: rotate(0deg) scale(1.05);
+}
+
+.icon-wrapper {
+    width: 42px;
+    /* Reduced from 54px */
+    height: 42px;
+    /* Reduced from 54px */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    /* Reduced from 24px */
+    color: #ffffff;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.folder-card:hover .icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.action-btns {
+    opacity: 0;
+    transform: translateX(5px);
+    transition: all 0.3s ease;
+}
+
+.folder-card:hover .action-btns {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.action-icon-bg {
+    width: 28px;
+    /* Reduced from 32px */
+    height: 28px;
+    /* Reduced from 32px */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    /* Reduced from 13px */
+    transition: all 0.2s;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+}
+
+.action-icon-bg:hover.edit-btn {
+    background-color: #e0f2fe;
+    color: #0ea5e9;
+    border-color: #bae6fd;
+}
+
+.action-icon-bg:hover.delete-btn {
+    background-color: #fee2e2;
+    color: #ef4444;
+    border-color: #fecaca;
+}
+
+.category-name-text {
+    color: #0f172a;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    font-size: 15px;
+    /* Tighter font size */
+}
+
+.category-meta {
+    font-size: 11px;
+    /* Tighter font size */
+    color: #94a3b8;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.inline-edit-input {
+    border: 2px solid #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-radius: 6px 0 0 6px !important;
+    height: 30px;
+    font-size: 13px;
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.category-wrapper {
+    animation: fadeSlideUp 0.4s ease backwards;
+}
+
+.custom-modal-header {
+    background: linear-gradient(to right, #f8fafc, #ffffff);
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: #93c5fd;
+}

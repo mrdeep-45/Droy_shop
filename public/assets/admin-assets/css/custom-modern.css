@@ -1,0 +1,133 @@
+/* custom-modern.css - Subtle Form Enhancements */
+:root {
+    --primary-blue: #0A66C2;
+    --border-color: #E2E8F0;
+    --bg-surface: #FFFFFF;
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --transition: 200ms ease-in-out;
+}
+
+/* Elegant Cards */
+.modern-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.modern-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+}
+
+.modern-card-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.modern-divider {
+    border-top: 1px solid var(--border-color);
+    margin: 16px 0;
+}
+
+/* Labels */
+.modern-card .form-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 4px;
+    display: block;
+}
+
+.text-danger {
+    color: #ef4444 !important;
+}
+
+/* Inputs & Textareas scoped to modern cards to avoid datatable */
+.modern-card .form-control, 
+.modern-card .form-select {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    font-size: 0.9rem;
+}
+
+.modern-card .form-control:focus, 
+.modern-card .form-select:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.2);
+    outline: none;
+}
+
+/* Select2 Overrides scoped to modern cards */
+.modern-card .select2-container--default .select2-selection--single {
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: var(--shadow-sm);
+    height: 2.25rem !important;
+}
+
+.modern-card .select2-container--default .select2-selection--single .select2-selection__rendered {
+    border: none !important; /* Fix double border issue */
+    line-height: 2.15rem !important;
+    padding-left: 12px !important;
+}
+
+.modern-card .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 2.15rem !important;
+}
+
+.modern-card .select2-container--default.select2-container--focus .select2-selection--single,
+.modern-card .select2-container--default.select2-container--open .select2-selection--single {
+    border-color: var(--primary-blue) !important;
+    box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.2) !important;
+}
+
+/* Global Select2 Clear Icon & Text Truncation Overlap Fix */
+.select2-container--default .select2-selection--single {
+    position: relative !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    padding-right: 42px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__clear {
+    position: absolute !important;
+    right: 24px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    float: none !important;
+    margin: 0 !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    line-height: 1 !important;
+    z-index: 4 !important;
+    cursor: pointer !important;
+    transition: color 150ms ease !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__clear:hover {
+    color: #ef4444 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
