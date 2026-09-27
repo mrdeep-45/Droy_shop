@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        get_email_config();
+        // get_email_config();
         view()->share('actual_url', asset('assets/'));
         config(['app.actual_url' => asset('assets/')]);
 

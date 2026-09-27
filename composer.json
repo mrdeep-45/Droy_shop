@@ -35,7 +35,8 @@
         "files": [
             "app/Http/helper.php",
             "app/Http/permission.php",
-            "app/Http/mail.php"
+            "app/Http/mail.php",
+            "app/Http/shop_helper.php"
         ]
     },
     "autoload-dev": {
