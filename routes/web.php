@@ -583,6 +583,33 @@ use App\Http\Middleware\CustomerIsValid;
 use App\Http\Middleware\VendorIsValid;
 use App\Http\Middleware\DeliveryStaffIsValid;
 
+// ── Customer Storefront Routes (Phase 4) ─────────────────────────────
+Route::get('/', [\App\Http\Controllers\ShopStoreController::class, 'home'])->name('store.home');
+Route::get('/shop', [\App\Http\Controllers\ShopStoreController::class, 'shop'])->name('store.shop');
+Route::get('/category/{slug}', [\App\Http\Controllers\ShopStoreController::class, 'category'])->name('store.category');
+Route::get('/product/{slug}', [\App\Http\Controllers\ShopStoreController::class, 'product'])->name('store.product.detail');
+
+// Wishlist
+Route::get('/wishlist', [\App\Http\Controllers\ShopCartController::class, 'wishlist'])->name('store.wishlist');
+Route::post('/wishlist/add', [\App\Http\Controllers\ShopCartController::class, 'addToWishlist'])->name('store.wishlist.add');
+Route::post('/wishlist/remove', [\App\Http\Controllers\ShopCartController::class, 'removeFromWishlist'])->name('store.wishlist.remove');
+
+// Cart
+Route::get('/cart', [\App\Http\Controllers\ShopCartController::class, 'cart'])->name('store.cart');
+Route::post('/cart/add', [\App\Http\Controllers\ShopCartController::class, 'addToCart'])->name('store.cart.add');
+Route::post('/cart/update', [\App\Http\Controllers\ShopCartController::class, 'updateCart'])->name('store.cart.update');
+Route::post('/cart/remove', [\App\Http\Controllers\ShopCartController::class, 'removeFromCart'])->name('store.cart.remove');
+Route::post('/cart/apply-coupon', [\App\Http\Controllers\ShopCartController::class, 'applyCoupon'])->name('store.cart.apply_coupon');
+Route::post('/cart/remove-coupon', [\App\Http\Controllers\ShopCartController::class, 'removeCoupon'])->name('store.cart.remove_coupon');
+
+// Checkout (Requires login via CustomerIsValid or similar logic handled in controller)
+Route::middleware([CustomerIsValid::class])->group(function() {
+    Route::get('/checkout', [\App\Http\Controllers\ShopCheckoutController::class, 'index'])->name('store.checkout');
+    Route::post('/checkout/process', [\App\Http\Controllers\ShopCheckoutController::class, 'process'])->name('store.checkout.process');
+    Route::get('/checkout/success/{order_id}', [\App\Http\Controllers\ShopCheckoutController::class, 'success'])->name('store.checkout.success');
+});
+
+
 // ── Auth Routes (Public) ─────────────────────────────────────────────
 
 Route::get('/shop/login',  [ShopAdminLoginController::class, 'showAdminLogin'])->name('shop.login');
@@ -725,11 +752,9 @@ Route::prefix('shop')->middleware([ShopAdminIsValid::class])->group(function () 
     Route::post('/review/delete',  [\App\Http\Controllers\ShopReviewController::class, 'destroy'])->name('shop.review.delete');
 
     Route::get('/coupon',           [\App\Http\Controllers\ShopCouponController::class, 'index'])->name('shop.coupon.index');
-    Route::get('/coupon/list',      [\App\Http\Controllers\ShopCouponController::class, 'getList'])->name('shop.coupon.list');
-    Route::post('/coupon/store',    [\App\Http\Controllers\ShopCouponController::class, 'store'])->name('shop.coupon.store');
-    Route::get('/coupon/edit/{id}', [\App\Http\Controllers\ShopCouponController::class, 'edit'])->name('shop.coupon.edit');
-    Route::post('/coupon/delete',   [\App\Http\Controllers\ShopCouponController::class, 'destroy'])->name('shop.coupon.delete');
-    Route::post('/coupon/validate', [\App\Http\Controllers\ShopCouponController::class, 'validateCoupon'])->name('shop.coupon.validate');
+    Route::post('/coupon/store',    [\App\Http\Controllers\ShopCouponController::class, 'store'])->name('shop.coupons.store');
+    Route::post('/coupon/update/{id}', [\App\Http\Controllers\ShopCouponController::class, 'update'])->name('shop.coupons.update');
+    Route::post('/coupon/delete/{id}', [\App\Http\Controllers\ShopCouponController::class, 'destroy'])->name('shop.coupons.delete');
 
     Route::get('/banner',           [\App\Http\Controllers\ShopBannerController::class, 'index'])->name('shop.banner.index');
     Route::get('/banner/list',      [\App\Http\Controllers\ShopBannerController::class, 'getList'])->name('shop.banner.list');
@@ -795,6 +820,7 @@ Route::prefix('store/account')->middleware([CustomerIsValid::class])->group(func
     Route::get('/orders/{id}',      [\App\Http\Controllers\ShopStorefrontController::class, 'orderDetail'])->name('store.order.detail');
     Route::get('/orders/{id}/invoice', [\App\Http\Controllers\ShopStorefrontController::class, 'downloadInvoice'])->name('store.order.invoice');
     Route::post('/orders/{id}/cancel', [\App\Http\Controllers\ShopStorefrontController::class, 'cancelOrder'])->name('store.order.cancel');
+    Route::post('/orders/{id}/return', [\App\Http\Controllers\ShopStorefrontController::class, 'requestReturn'])->name('store.order.return');
     Route::get('/wishlist',         [\App\Http\Controllers\ShopWishlistController::class, 'index'])->name('store.wishlist');
     Route::get('/address',          [\App\Http\Controllers\ShopAddressController::class, 'index'])->name('store.address');
     Route::post('/address/store',   [\App\Http\Controllers\ShopAddressController::class, 'store'])->name('store.address.store');

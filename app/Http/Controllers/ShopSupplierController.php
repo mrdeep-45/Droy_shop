@@ -203,13 +203,13 @@ class ShopSupplierController extends Controller
             ->where('p.status', 0)
             ->orderBy('p.created_at', 'desc')
             ->limit(10)
-            ->select('p.purchase_number', 'p.purchase_date', 'p.total_amount', 'p.payment_status', 'p.receive_status', 'p.purchase_id')
+            ->select('p.purchase_number', 'p.purchase_date', 'p.total_amount', 'p.payment_status', 'p.purchase_status', 'p.purchase_id')
             ->get();
 
         $stats = [
             'total_orders'  => DB::table('tbl_shop_purchases')->where('supplier_id', $id)->where('status', 0)->count(),
             'total_value'   => DB::table('tbl_shop_purchases')->where('supplier_id', $id)->where('status', 0)->sum('total_amount'),
-            'pending_orders'=> DB::table('tbl_shop_purchases')->where('supplier_id', $id)->where('status', 0)->where('receive_status', 'pending')->count(),
+            'pending_orders'=> DB::table('tbl_shop_purchases')->where('supplier_id', $id)->where('status', 0)->where('purchase_status', 'ordered')->count(),
         ];
 
         $page_title = 'Supplier Details';

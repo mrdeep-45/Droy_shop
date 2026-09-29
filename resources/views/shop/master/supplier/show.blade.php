@@ -185,12 +185,14 @@
                                         @endif
                                     </td>
                                     <td class="pe-3 py-2">
-                                        @if($po->receive_status === 'received')
+                                        @if($po->purchase_status === 'received')
                                             <span class="badge bg-success-subtle text-success" style="font-size:0.7rem;border-radius:20px;">Received</span>
-                                        @elseif($po->receive_status === 'partial')
-                                            <span class="badge bg-info-subtle text-info" style="font-size:0.7rem;border-radius:20px;">Partial</span>
+                                        @elseif($po->purchase_status === 'ordered')
+                                            <span class="badge bg-primary-subtle text-primary" style="font-size:0.7rem;border-radius:20px;">Ordered</span>
+                                        @elseif($po->purchase_status === 'cancelled')
+                                            <span class="badge bg-danger-subtle text-danger" style="font-size:0.7rem;border-radius:20px;">Cancelled</span>
                                         @else
-                                            <span class="badge bg-secondary-subtle text-secondary" style="font-size:0.7rem;border-radius:20px;">Pending</span>
+                                            <span class="badge bg-secondary-subtle text-secondary" style="font-size:0.7rem;border-radius:20px;">Draft</span>
                                         @endif
                                     </td>
                                 </tr>
