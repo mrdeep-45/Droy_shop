@@ -789,6 +789,7 @@ Route::prefix('shop')->middleware([ShopAdminIsValid::class])->group(function () 
 Route::prefix('vendor')->middleware([VendorIsValid::class])->group(function () {
     Route::get('/dashboard', [ShopDashboardController::class, 'index'])->name('vendor.dashboard');
     Route::get('/product',           [\App\Http\Controllers\ShopProductController::class, 'vendorIndex'])->name('vendor.product.index');
+    Route::get('/product/list',      [\App\Http\Controllers\ShopProductController::class, 'getList'])->name('vendor.product.list');
     Route::post('/product/store',    [\App\Http\Controllers\ShopProductController::class, 'vendorStore'])->name('vendor.product.store');
     Route::get('/product/edit/{id}', [\App\Http\Controllers\ShopProductController::class, 'vendorEdit'])->name('vendor.product.edit');
     Route::post('/product/delete',   [\App\Http\Controllers\ShopProductController::class, 'vendorDestroy'])->name('vendor.product.delete');
@@ -797,6 +798,7 @@ Route::prefix('vendor')->middleware([VendorIsValid::class])->group(function () {
     Route::get('/order/list',        [\App\Http\Controllers\ShopOrderController::class, 'vendorList'])->name('vendor.order.list');
     Route::get('/order/show/{id}',   [\App\Http\Controllers\ShopOrderController::class, 'vendorShow'])->name('vendor.order.show');
     Route::get('/earning',           [\App\Http\Controllers\ShopVendorEarningController::class, 'vendorIndex'])->name('vendor.earning.index');
+    Route::get('/earning/list',      [\App\Http\Controllers\ShopVendorEarningController::class, 'vendorEarningList'])->name('vendor.earning.list');
     Route::get('/report',            [\App\Http\Controllers\ShopReportController::class, 'vendorDashboard'])->name('vendor.report.index');
     Route::post('/logout',           [ShopAdminLoginController::class, 'shopLogout'])->name('vendor.logout');
 });
@@ -805,10 +807,12 @@ Route::prefix('vendor')->middleware([VendorIsValid::class])->group(function () {
 Route::prefix('delivery')->middleware([DeliveryStaffIsValid::class])->group(function () {
     Route::get('/dashboard',          [ShopDashboardController::class, 'index'])->name('delivery.dashboard');
     Route::get('/orders',             [\App\Http\Controllers\ShopDeliveryStaffController::class, 'myOrders'])->name('delivery.order.index');
+    Route::get('/orders/list',        [\App\Http\Controllers\ShopDeliveryStaffController::class, 'getList'])->name('delivery.order.list');
     Route::get('/orders/show/{id}',   [\App\Http\Controllers\ShopDeliveryStaffController::class, 'showOrder'])->name('delivery.order.show');
     Route::post('/orders/status',     [\App\Http\Controllers\ShopDeliveryStaffController::class, 'updateStatus'])->name('delivery.order.status');
     Route::post('/orders/otp-verify', [\App\Http\Controllers\ShopDeliveryStaffController::class, 'verifyOtp'])->name('delivery.order.otp_verify');
     Route::get('/history',            [\App\Http\Controllers\ShopDeliveryStaffController::class, 'history'])->name('delivery.history.index');
+    Route::get('/history/list',       [\App\Http\Controllers\ShopDeliveryStaffController::class, 'getHistoryList'])->name('delivery.history.list');
     Route::post('/logout',            [ShopAdminLoginController::class, 'shopLogout'])->name('delivery.logout');
 });
 

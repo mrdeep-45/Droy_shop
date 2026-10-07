@@ -188,4 +188,111 @@ class ShopOrderController extends Controller
             return redirect()->back()->with('error', 'Failed to assign delivery staff');
         }
     }
+
+    // ── Vendor Methods ──────────────────────────────────────────────
+    public function vendorIndex()
+    {
+        return view('shop.vendor.orders.index');
+    }
+
+    public function vendorList(Request $request)
+    {
+        $vendorId = session('vendor_id');
+
+        $query = DB::table('tbl_shop_orders as o')
+            ->join('shop_customers as c', 'o.customer_id', '=', 'c.customer_id')
+            ->join('tbl_shop_order_items as i', 'o.order_id', '=', 'i.order_id')
+            ->where('i.vendor_id', $vendorId)
+            ->select([
+                'o.order_id',
+                'o.order_number',
+                'c.name as customer_name',
+                'o.payment_method',
+                'o.payment_status',
+                'o.order_status',
+                'o.created_at',
+                DB::raw('SUM(i.total_price) as vendor_total_amount')
+            ])
+            ->groupBy('o.order_id', 'o.order_number', 'c.name', 'o.payment_method', 'o.payment_status', 'o.order_status', 'o.created_at');
+
+        $totalData = (clone $query)->get()->count();
+        $totalFiltered = $totalData;
+
+        if (!empty($request->search['value'])) {
+            $search = $request->search['value'];
+            $query->having('o.order_number', 'like', "%{$search}%")
+                  ->orHaving('c.name', 'like', "%{$search}%");
+            $totalFiltered = (clone $query)->get()->count();
+        }
+
+        $orderDir = $request->input('order.0.dir', 'desc');
+        $query->orderBy('o.created_at', $orderDir);
+
+        $start  = $request->input('start', 0);
+        $length = $request->input('length', 25);
+        $orders = $query->offset($start)->limit($length)->get();
+
+        $data = [];
+        foreach ($orders as $row) {
+            $badges = [
+                'pending' => 'bg-warning text-dark',
+                'confirmed' => 'bg-info text-dark',
+                'processing' => 'bg-primary',
+                'ready_to_ship' => 'bg-primary',
+                'shipped' => 'bg-dark',
+                'out_for_delivery' => 'bg-info',
+                'delivered' => 'bg-success',
+                'cancelled' => 'bg-danger',
+                'return_requested' => 'bg-warning text-dark',
+                'returned' => 'bg-secondary'
+            ];
+            $badge = $badges[$row->order_status] ?? 'bg-secondary';
+            $statusBadge = '<span class="badge ' . $badge . '">' . ucfirst(str_replace('_', ' ', $row->order_status)) . '</span>';
+
+            $btn = '<a href="' . route('vendor.order.show', $row->order_id) . '" class="btn btn-sm btn-primary"><i class="bx bx-show"></i> View</a>';
+
+            $data[] = [
+                date('d M Y h:i A', strtotime($row->created_at)),
+                $row->order_number,
+                $row->customer_name,
+                '₹' . number_format($row->vendor_total_amount, 2),
+                ucfirst($row->payment_method) . ' (' . ucfirst($row->payment_status) . ')',
+                $statusBadge,
+                $btn
+            ];
+        }
+
+        return response()->json([
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data" => $data
+        ]);
+    }
+
+    public function vendorShow($id)
+    {
+        $vendorId = session('vendor_id');
+
+        $order = DB::table('tbl_shop_orders as o')
+            ->join('shop_customers as c', 'o.customer_id', '=', 'c.customer_id')
+            ->where('o.order_id', $id)
+            ->select('o.*', 'c.name as customer_name', 'c.email', 'c.phone as customer_phone')
+            ->first();
+
+        if (!$order) abort(404);
+
+        // Only fetch items belonging to this vendor
+        $items = DB::table('tbl_shop_order_items')
+            ->where('order_id', $id)
+            ->where('vendor_id', $vendorId)
+            ->get();
+
+        if ($items->isEmpty()) abort(403, 'Unauthorized. No items in this order belong to you.');
+
+        $tracking = DB::table('tbl_shop_order_tracking')->where('order_id', $id)->orderBy('created_at', 'desc')->get();
+
+        // Let the view decide what to render based on shop_login_type
+        return view('shop.vendor.orders.show', compact('order', 'items', 'tracking'));
+    }
 }

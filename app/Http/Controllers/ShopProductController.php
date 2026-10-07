@@ -37,6 +37,10 @@ class ShopProductController extends Controller
                 'b.brand_name', 'c.category_name', 'pi.image_path'
             ]);
 
+        if (session('shop_login_type') === 'Vendor') {
+            $query->where('p.vendor_id', session('vendor_id'));
+        }
+
         $totalData = (clone $query)->count();
         
         if (!empty($request->search['value'])) {
@@ -77,10 +81,14 @@ class ShopProductController extends Controller
             
             $statusBadge = $p->is_active ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>';
             
-            $actions = '<div class="d-flex gap-1">
-                            <a href="' . route('shop.product.edit', $p->product_id) . '" class="btn btn-xs btn-outline-primary" title="Edit"><i class="bx bx-edit"></i></a>
-                            <a href="' . route('shop.product.show', $p->product_id) . '" class="btn btn-xs btn-outline-info" title="View"><i class="bx bx-show"></i></a>
-                            <button class="btn btn-xs btn-outline-danger deleteProductBtn" data-id="' . $p->product_id . '" data-name="' . e($p->product_name) . '" title="Delete"><i class="bx bx-trash"></i></button>
+            $isVendor = session('shop_login_type') === 'Vendor';
+            $editRoute = $isVendor ? route('vendor.product.edit', $p->product_id) : route('shop.product.edit', $p->product_id);
+            $showRoute = $isVendor ? '#' : route('shop.product.show', $p->product_id); // we might not have a vendor show route
+            
+            $actions = '<div class="d-flex gap-1 align-items-center justify-content-center">
+                            <a href="' . $editRoute . '" class="btn btn-sm btn-outline-primary" title="Edit"><i class="bx bx-edit"></i></a>
+                            <a href="' . $showRoute . '" class="btn btn-sm btn-outline-info" title="View"><i class="bx bx-show"></i></a>
+                            <button class="btn btn-sm btn-outline-danger deleteProductBtn" data-id="' . $p->product_id . '" data-name="' . e($p->product_name) . '" title="Delete"><i class="bx bx-trash"></i></button>
                         </div>';
 
             $data[] = [
@@ -267,5 +275,87 @@ class ShopProductController extends Controller
     {
         DB::table('tbl_shop_product_variants')->where('product_variant_id', $request->product_variant_id)->delete();
         return response()->json(['status' => 'success', 'message' => 'Variant deleted.']);
+    }
+
+    // ── Vendor Methods ──────────────────────────────────────────────
+    public function vendorIndex()
+    {
+        $page_title = 'My Products';
+        $page_name  = 'Products';
+        
+        $brands     = DB::table('mst_shop_brands')->where('status', 0)->orderBy('brand_name')->get();
+        $categories = DB::table('mst_shop_categories')->where('status', 0)->orderBy('category_name')->get();
+        $units      = DB::table('mst_shop_units')->where('status', 0)->orderBy('unit_name')->get();
+        $variants   = DB::table('mst_shop_variants')->where('status', 0)->orderBy('variant_name')->get();
+        
+        return view('shop.vendor.product.index', compact('page_title', 'page_name', 'brands', 'categories', 'units', 'variants'));
+    }
+
+    public function vendorStore(Request $request)
+    {
+        $vendorId = session('vendor_id');
+
+        $validator = Validator::make($request->all(), [
+            'product_name' => 'required|string|max:255',
+            'product_code' => 'required|string|max:50|unique:tbl_shop_products,product_code',
+            'category_id'  => 'required|integer',
+            'base_price'   => 'required|numeric',
+            'selling_price'=> 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status' => 'error', 'message' => $validator->errors()->first()]);
+        }
+
+        $slug = Str::slug($request->product_name) . '-' . uniqid();
+
+        $payload = [
+            'vendor_id' => $vendorId,
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'unit_id' => $request->unit_id,
+            'product_name' => $request->product_name,
+            'product_slug' => $slug,
+            'product_code' => strtoupper($request->product_code),
+            'sku' => strtoupper($request->sku),
+            'base_price' => $request->base_price,
+            'selling_price' => $request->selling_price,
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description,
+            'is_active' => $request->is_active ?? 1, // Vendors can activate immediately or wait for approval, let's say 1
+            'stock_qty' => $request->stock_qty ?? 0,
+            'is_featured' => 0,
+            'created_at' => now(),
+            'updated_at' => now(),
+            'created_by' => $vendorId,
+            'created_by_type' => 'vendor'
+        ];
+
+        DB::table('tbl_shop_products')->insert($payload);
+        return response()->json(['status' => 'success', 'message' => 'Product saved successfully.']);
+    }
+
+    public function vendorEdit($id)
+    {
+        $vendorId = session('vendor_id');
+        $product = DB::table('tbl_shop_products')
+            ->where('product_id', $id)
+            ->where('vendor_id', $vendorId)
+            ->first();
+            
+        if (!$product) {
+            return response()->json(['status' => 'error', 'message' => 'Product not found.']);
+        }
+        return response()->json(['status' => 'success', 'data' => $product]);
+    }
+
+    public function vendorDestroy(Request $request)
+    {
+        $vendorId = session('vendor_id');
+        DB::table('tbl_shop_products')
+            ->where('product_id', $request->product_id)
+            ->where('vendor_id', $vendorId)
+            ->delete();
+        return response()->json(['status' => 'success', 'message' => 'Product deleted.']);
     }
 }
