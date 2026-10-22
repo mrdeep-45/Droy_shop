@@ -807,12 +807,10 @@ Route::prefix('vendor')->middleware([VendorIsValid::class])->group(function () {
 Route::prefix('delivery')->middleware([DeliveryStaffIsValid::class])->group(function () {
     Route::get('/dashboard',          [ShopDashboardController::class, 'index'])->name('delivery.dashboard');
     Route::get('/orders',             [\App\Http\Controllers\ShopDeliveryStaffController::class, 'myOrders'])->name('delivery.order.index');
-    Route::get('/orders/list',        [\App\Http\Controllers\ShopDeliveryStaffController::class, 'getList'])->name('delivery.order.list');
     Route::get('/orders/show/{id}',   [\App\Http\Controllers\ShopDeliveryStaffController::class, 'showOrder'])->name('delivery.order.show');
     Route::post('/orders/status',     [\App\Http\Controllers\ShopDeliveryStaffController::class, 'updateStatus'])->name('delivery.order.status');
     Route::post('/orders/otp-verify', [\App\Http\Controllers\ShopDeliveryStaffController::class, 'verifyOtp'])->name('delivery.order.otp_verify');
     Route::get('/history',            [\App\Http\Controllers\ShopDeliveryStaffController::class, 'history'])->name('delivery.history.index');
-    Route::get('/history/list',       [\App\Http\Controllers\ShopDeliveryStaffController::class, 'getHistoryList'])->name('delivery.history.list');
     Route::post('/logout',            [ShopAdminLoginController::class, 'shopLogout'])->name('delivery.logout');
 });
 
