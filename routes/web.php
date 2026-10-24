@@ -749,6 +749,7 @@ Route::prefix('shop')->middleware([ShopAdminIsValid::class])->group(function () 
     Route::get('/review',          [\App\Http\Controllers\ShopReviewController::class, 'index'])->name('shop.review.index');
     Route::get('/review/list',     [\App\Http\Controllers\ShopReviewController::class, 'getList'])->name('shop.review.list');
     Route::post('/review/approve', [\App\Http\Controllers\ShopReviewController::class, 'approve'])->name('shop.review.approve');
+    Route::post('/review/reply',   [\App\Http\Controllers\ShopReviewController::class, 'reply'])->name('shop.review.reply');
     Route::post('/review/delete',  [\App\Http\Controllers\ShopReviewController::class, 'destroy'])->name('shop.review.delete');
 
     Route::get('/coupon',           [\App\Http\Controllers\ShopCouponController::class, 'index'])->name('shop.coupon.index');
