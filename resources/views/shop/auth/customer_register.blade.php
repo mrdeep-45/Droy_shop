@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>HexaShop — Customer Registration</title>
+    <title>DPShop — Customer Registration</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -48,7 +48,7 @@
     <div class="store-logo">
         <i class="bx bx-user-plus"></i>
         <h2>Create Account</h2>
-        <p>Join HexaShop and start shopping!</p>
+        <p>Join DPShop and start shopping!</p>
     </div>
 
     <div class="error-box" id="regError"></div>

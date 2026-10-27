@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('shop.include.meta')
-    <title>Vendor Performance Report — HexaShop Admin</title>
+    <title>Vendor Performance Report — DPShop Admin</title>
     @include('shop.include.header_link')
 </head>
 <body>

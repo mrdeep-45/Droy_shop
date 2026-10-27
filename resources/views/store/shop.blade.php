@@ -1,5 +1,5 @@
 @extends('store.layouts.app')
-@section('title', isset($category) ? $category->category_name . ' | HexaShop' : 'Shop All Products | HexaShop')
+@section('title', isset($category) ? $category->category_name . ' | DPShop' : 'Shop All Products | DPShop')
 
 @section('content')
 

@@ -98,7 +98,7 @@
         <div class="clearfix"></div>
 
         <div class="footer">
-            <p>Thank you for shopping with HexaShop!</p>
+            <p>Thank you for shopping with DPShop!</p>
             <p>This is a computer-generated invoice and does not require a physical signature.</p>
         </div>
     </div>

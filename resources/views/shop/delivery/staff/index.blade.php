@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('shop.include.meta')
-    <title>Delivery Staff — HexaShop Admin</title>
+    <title>Delivery Staff — DPShop Admin</title>
     @include('shop.include.header_link')
 </head>
 <body>

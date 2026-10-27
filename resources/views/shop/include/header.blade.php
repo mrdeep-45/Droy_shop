@@ -17,7 +17,12 @@
         ->count();
 
     // User display info
-    $displayName = session('shop_admin_name') ?? session('vendor_biz') ?? session('delivery_staff_name') ?? 'User';
+    $adminName = session('shop_admin_name');
+    if ($adminName === 'DPShop Super Admin') {
+        $adminName = 'DPShop Super Admin';
+        session(['shop_admin_name' => $adminName]);
+    }
+    $displayName = $adminName ?? session('vendor_biz') ?? session('delivery_staff_name') ?? 'User';
     $roleLabel   = match($loginType) {
         'ShopSuperAdmin' => 'Super Admin',
         'ShopAdmin'      => 'Shop Admin',
@@ -36,9 +41,14 @@
 
     {{-- Logo --}}
     <div class="shop-sidebar-logo">
-        <a href="{{ route('shop.dashboard') }}" class="text-decoration-none">
-            <span class="logo-text">Hexa<span>Shop</span></span>
-            <span class="logo-badge">ADMIN</span>
+        <a href="{{ route('shop.dashboard') }}" class="text-decoration-none d-flex align-items-center gap-2">
+            <div class="shop-logo-icon d-flex align-items-center justify-content-center rounded-3 shadow-sm" style="width:34px; height:34px; background:linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color:#fff; font-size:1.2rem;">
+                <i class="bx bxs-shopping-bag"></i>
+            </div>
+            <div>
+                <span class="logo-text">DP<span>Shop</span></span>
+                <span class="logo-badge">ADMIN</span>
+            </div>
         </a>
     </div>
 
@@ -337,8 +347,8 @@
                     <div class="fw-semibold" style="font-size:0.85rem;">{{ $displayName }}</div>
                     <div class="text-muted" style="font-size:0.75rem;">{{ $roleLabel }}</div>
                 </li>
-                <li><a class="dropdown-item py-2" href="#"><i class="bx bx-user me-2"></i>My Profile</a></li>
-                <li><a class="dropdown-item py-2" href="#"><i class="bx bx-lock me-2"></i>Change Password</a></li>
+                <li><a class="dropdown-item py-2" href="{{ route('shop.profile') }}"><i class="bx bx-user me-2"></i>My Profile</a></li>
+                <li><a class="dropdown-item py-2" href="{{ route('shop.change_password') }}"><i class="bx bx-lock me-2"></i>Change Password</a></li>
                 <li><hr class="dropdown-divider my-1"></li>
                 <li>
                     <button class="dropdown-item py-2 text-danger" id="shopLogoutBtn">

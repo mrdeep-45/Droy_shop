@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('shop.include.meta')
-    <title>Delivery History — HexaShop Delivery</title>
+    <title>Delivery History — DPShop Delivery</title>
     @include('shop.include.header_link')
 </head>
 <body>

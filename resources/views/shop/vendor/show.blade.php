@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('shop.include.meta')
-    <title>Vendor — {{ $vendor->shop_name ?? 'Profile' }} — HexaShop Admin</title>
+    <title>Vendor — {{ $vendor->shop_name ?? 'Profile' }} — DPShop Admin</title>
     @include('shop.include.header_link')
 </head>
 <body>

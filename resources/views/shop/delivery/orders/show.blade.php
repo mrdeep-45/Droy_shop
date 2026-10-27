@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('shop.include.meta')
-    <title>{{ $page_title }} — HexaShop Delivery</title>
+    <title>{{ $page_title }} — DPShop Delivery</title>
     @include('shop.include.header_link')
 </head>
 <body>

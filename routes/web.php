@@ -784,6 +784,11 @@ Route::prefix('shop')->middleware([ShopAdminIsValid::class])->group(function () 
     Route::post('/settings/save', [\App\Http\Controllers\ShopSettingController::class, 'save'])->name('shop.setting.save');
     Route::get('/activity-log',        [\App\Http\Controllers\ShopActivityLogController::class, 'index'])->name('shop.activity_log.index');
     Route::get('/activity-log/list',   [\App\Http\Controllers\ShopActivityLogController::class, 'getList'])->name('shop.activity_log.list');
+
+    Route::get('/profile',                   [\App\Http\Controllers\ShopProfileController::class, 'index'])->name('shop.profile');
+    Route::post('/profile/update',           [\App\Http\Controllers\ShopProfileController::class, 'updateProfile'])->name('shop.profile.update');
+    Route::get('/change-password',           [\App\Http\Controllers\ShopProfileController::class, 'showChangePassword'])->name('shop.change_password');
+    Route::post('/change-password/update',   [\App\Http\Controllers\ShopProfileController::class, 'updatePassword'])->name('shop.change_password.update');
 });
 
 // ── Vendor Panel Routes ──────────────────────────────────────────────

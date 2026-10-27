@@ -23,7 +23,7 @@ class ShopActivityLogController extends Controller
     {
         $logs = DB::table('tbl_shop_activity_logs as al')
             ->select([
-                'al.id',
+                'al.log_id as id',
                 'al.user_type',
                 'al.user_id',
                 'al.action',

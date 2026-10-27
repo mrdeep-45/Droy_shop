@@ -1,5 +1,5 @@
 @extends('store.layouts.app')
-@section('title', 'Welcome to HexaShop | Premium Garments')
+@section('title', 'Welcome to DPShop | Premium Garments')
 
 @section('content')
 

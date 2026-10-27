@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'HexaShop E-Commerce')</title>
+    <title>@yield('title', 'DPShop E-Commerce')</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 CSS -->
@@ -144,7 +144,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top shadow-sm">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('store.home') }}">
-            <i class="bx bxs-shopping-bag text-primary"></i> HexaShop
+            <i class="bx bxs-shopping-bag text-primary"></i> DPShop
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
             <span class="navbar-toggler-icon"></span>
@@ -210,7 +210,7 @@
     <div class="container">
         <div class="row gy-4">
             <div class="col-lg-4 col-md-6">
-                <h5 class="text-white fw-bold mb-3 d-flex align-items-center gap-2"><i class="bx bxs-shopping-bag text-primary"></i> HexaShop</h5>
+                <h5 class="text-white fw-bold mb-3 d-flex align-items-center gap-2"><i class="bx bxs-shopping-bag text-primary"></i> DPShop</h5>
                 <p class="mb-4 text-secondary">Your one-stop destination for premium quality garments and apparel. We deliver fashion that speaks.</p>
                 <div class="d-flex gap-3">
                     <a href="#" class="fs-4"><i class="bx bxl-facebook-circle"></i></a>
@@ -248,7 +248,7 @@
         <hr class="my-4 border-secondary">
         <div class="row text-center text-md-start">
             <div class="col-md-6 text-secondary mb-2 mb-md-0">
-                &copy; {{ date('Y') }} HexaShop. All rights reserved.
+                &copy; {{ date('Y') }} DPShop. All rights reserved.
             </div>
             <div class="col-md-6 text-md-end">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" height="20" class="me-2 opacity-50">

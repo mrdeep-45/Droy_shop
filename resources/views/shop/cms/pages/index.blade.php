@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('shop.include.meta')
-    <title>CMS Pages — HexaShop Admin</title>
+    <title>CMS Pages — DPShop Admin</title>
     @include('shop.include.header_link')
 </head>
 <body>

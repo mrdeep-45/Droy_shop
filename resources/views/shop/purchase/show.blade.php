@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('shop.include.meta')
-    <title>{{ $page_title }} — HexaShop</title>
+    <title>{{ $page_title }} — DPShop</title>
     @include('shop.include.header_link')
 </head>
 <body>
@@ -35,7 +35,7 @@
                             <p class="text-muted mb-0">Date: {{ \Carbon\Carbon::parse($purchase->purchase_date)->format('d-M-Y') }}</p>
                         </div>
                         <div class="text-end">
-                            <h4 class="fw-bold text-primary mb-0">HexaShop</h4>
+                            <h4 class="fw-bold text-primary mb-0">DPShop</h4>
                             <p class="text-muted mb-0">Admin Warehouse</p>
                             <p class="text-muted mb-0">123 Business Park, City</p>
                         </div>

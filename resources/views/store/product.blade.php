@@ -1,5 +1,5 @@
 @extends('store.layouts.app')
-@section('title', $product->product_name . ' | HexaShop')
+@section('title', $product->product_name . ' | DPShop')
 
 @push('styles')
 <style>

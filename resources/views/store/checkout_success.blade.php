@@ -1,5 +1,5 @@
 @extends('store.layouts.app')
-@section('title', 'Order Placed Successfully | HexaShop')
+@section('title', 'Order Placed Successfully | DPShop')
 
 @section('content')
 <div class="container py-5 text-center">

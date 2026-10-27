@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('shop.include.meta')
-    <title>Sales & Revenue Report — HexaShop Admin</title>
+    <title>Sales & Revenue Report — DPShop Admin</title>
     @include('shop.include.header_link')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
