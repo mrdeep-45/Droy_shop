@@ -203,7 +203,7 @@
 <div class="login-left">
     <div class="login-brand">
         <div class="brand-icon"><i class="bx bx-shopping-bag"></i></div>
-        <h1>Hexa<span>Shop</span></h1>
+        <h1>DP<span>Shop</span></h1>
         <p>Complete E-Commerce Management Platform</p>
     </div>
 
@@ -267,7 +267,7 @@
             <label class="form-label-custom">Email Address</label>
             <div class="input-icon-wrap">
                 <input type="email" class="form-control-custom" id="admin_email" name="email"
-                       placeholder="admin@hexashop.com" required autocomplete="email">
+                       placeholder="admin@dpshop.com" required autocomplete="email">
                 <i class="bx bx-envelope"></i>
             </div>
         </div>

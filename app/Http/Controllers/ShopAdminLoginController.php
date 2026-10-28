@@ -253,7 +253,7 @@ class ShopAdminLoginController extends Controller
 
             return response()->json([
                 'success'      => true,
-                'message'      => 'Registration successful! Welcome to HexaShop!',
+                'message'      => 'Registration successful! Welcome to DPShop!',
                 'redirect_url' => route('store.home'),
             ]);
 

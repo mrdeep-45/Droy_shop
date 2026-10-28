@@ -70,7 +70,7 @@
                     <div class="row g-2 mb-3">
                         <div class="col-md-6">
                             <label class="form-label fw-semibold" style="font-size:0.82rem;">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" name="email" id="email" required placeholder="rider@hexashop.com">
+                            <input type="email" class="form-control" name="email" id="email" required placeholder="rider@dpshop.com">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold" style="font-size:0.82rem;">Phone <span class="text-danger">*</span></label>

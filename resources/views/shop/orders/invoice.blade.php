@@ -25,8 +25,8 @@
     <div class="invoice-box">
         <div class="header">
             <div>
-                <h1>HEXASHOP</h1>
-                <p>123 Business Road, Tech Park<br>Mumbai, Maharashtra, India<br>support@hexashop.com</p>
+                <h1>DPSHOP</h1>
+                <p>123 Business Road, Tech Park<br>Mumbai, Maharashtra, India<br>support@dpshop.com</p>
             </div>
             <div class="header-info">
                 <h2 style="margin:0;">INVOICE</h2>

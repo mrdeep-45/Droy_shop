@@ -539,20 +539,83 @@ if (!function_exists('generateShopCode')) {
 }
 
 if (!function_exists('uploadShopImage')) {
-    function uploadShopImage($file, string $folder = 'products'): string
+    /**
+     * Upload an attachment using AppServiceProvider's img_path configuration.
+     * Creates target directory with mkdir() if not present.
+     *
+     * @param \Illuminate\Http\UploadedFile $file
+     * @param string $folder Subfolder under uploads/ (e.g., 'shop/products', 'shop/banners')
+     * @return string Relative path stored in DB (e.g., 'shop/products/filename.jpg')
+     */
+    function uploadShopImage($file, string $folder = 'shop/products'): string
     {
-        $folderPath = 'shop/' . ltrim($folder, '/');
-        $filename   = time() . '_' . uniqid() . '.' . strtolower($file->getClientOriginalExtension());
-        $file->storeAs($folderPath, $filename, 'public');
-        return 'storage/' . $folderPath . '/' . $filename;
+        $folder = trim($folder, '/');
+        $targetDir = public_path('assets/uploads/' . $folder);
+
+        // Ensure folder exists using mkdir()
+        if (!file_exists($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+
+        $filename = time() . '_' . uniqid() . '.' . strtolower($file->getClientOriginalExtension());
+        $file->move($targetDir, $filename);
+
+        return $folder . '/' . $filename;
+    }
+}
+
+if (!function_exists('getShopImageUrl')) {
+    /**
+     * Get the full URL for an attachment using AppServiceProvider's config('app.img_path').
+     *
+     * @param string|null $path
+     * @param string|null $defaultFallback
+     * @return string
+     */
+    function getShopImageUrl(?string $path, ?string $defaultFallback = null): string
+    {
+        if (empty($path)) {
+            return $defaultFallback ?: asset('assets/images/no-image.jpg');
+        }
+
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+
+        $baseImgPath = config('app.img_path') ?: asset('assets/uploads/');
+        $cleanPath   = ltrim(str_replace(['assets/uploads/', 'storage/'], '', $path), '/');
+
+        return rtrim($baseImgPath, '/') . '/' . $cleanPath;
     }
 }
 
 if (!function_exists('deleteShopImage')) {
-    function deleteShopImage(?string $relativePath): void
+    /**
+     * Delete an existing attachment using unlink() if it exists.
+     *
+     * @param string|null $relativePath Relative path stored in DB (e.g. 'shop/products/abc.jpg')
+     * @return bool
+     */
+    function deleteShopImage(?string $relativePath): bool
     {
-        if (!$relativePath) return;
-        $storagePath = preg_replace('#^storage/#', '', $relativePath);
-        \Illuminate\Support\Facades\Storage::disk('public')->delete($storagePath);
+        if (empty($relativePath)) {
+            return false;
+        }
+
+        // Clean relative path
+        $cleanPath = ltrim(str_replace(['assets/uploads/', 'storage/'], '', $relativePath), '/');
+        $fullPath  = public_path('assets/uploads/' . $cleanPath);
+
+        if (file_exists($fullPath) && is_file($fullPath)) {
+            return @unlink($fullPath);
+        }
+
+        // Check fallback public_path storage
+        $storagePath = public_path('storage/' . $cleanPath);
+        if (file_exists($storagePath) && is_file($storagePath)) {
+            return @unlink($storagePath);
+        }
+
+        return false;
     }
 }

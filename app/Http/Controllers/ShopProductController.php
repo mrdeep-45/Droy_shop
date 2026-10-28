@@ -64,9 +64,17 @@ class ShopProductController extends Controller
 
         $data = [];
         foreach ($products as $i => $p) {
-            $imgSrc = $p->image_path ? asset('storage/' . $p->image_path) : asset('assets/images/no-image.jpg');
+            if (!$p->image_path) {
+                $imgSrc = 'https://placehold.co/100x100/e2e8f0/475569?text=Product';
+            } elseif (str_starts_with($p->image_path, 'http')) {
+                $imgSrc = $p->image_path;
+            } elseif (str_starts_with($p->image_path, 'uploads/') || str_starts_with($p->image_path, 'assets/')) {
+                $imgSrc = asset($p->image_path);
+            } else {
+                $imgSrc = asset('storage/' . $p->image_path);
+            }
             $productCell = '<div class="d-flex align-items-center gap-3">
-                                <img src="' . $imgSrc . '" alt="IMG" class="rounded" style="width:40px;height:40px;object-fit:cover;">
+                                <img src="' . $imgSrc . '" alt="IMG" class="rounded shadow-sm" style="width:40px;height:40px;object-fit:cover;">
                                 <div>
                                     <h6 class="mb-0 fw-semibold" style="font-size:0.85rem;">' . e($p->product_name) . '</h6>
                                     <small class="text-muted">' . e($p->product_code) . ' | SKU: ' . e($p->sku ?? 'N/A') . '</small>
