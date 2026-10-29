@@ -198,4 +198,91 @@ class ShopDashboardController extends Controller
 
         return ['labels' => $months, 'data' => $revenues];
     }
+
+    /**
+     * Global quick search for header search bar (Products, Orders, Customers)
+     */
+    public function globalSearch(Request $request)
+    {
+        $q = trim($request->get('q', ''));
+        if (strlen($q) < 2) {
+            return response()->json(['results' => []]);
+        }
+
+        $results = [];
+
+        // 1. Search Products
+        $products = DB::table('tbl_shop_products as p')
+            ->leftJoin('tbl_shop_product_images as pi', function($join) {
+                $join->on('p.product_id', '=', 'pi.product_id')
+                     ->where('pi.is_primary', '=', 1);
+            })
+            ->where('p.status', 0)
+            ->where(function($query) use ($q) {
+                $query->where('p.product_name', 'like', "%{$q}%")
+                      ->orWhere('p.product_code', 'like', "%{$q}%")
+                      ->orWhere('p.sku', 'like', "%{$q}%");
+            })
+            ->select('p.product_id', 'p.product_name', 'p.product_code', 'p.selling_price', 'pi.image_path')
+            ->limit(5)
+            ->get();
+
+        foreach ($products as $prod) {
+            $results[] = [
+                'type'     => 'Product',
+                'icon'     => 'bx-package',
+                'title'    => $prod->product_name,
+                'subtitle' => $prod->product_code . ' • ₹' . number_format($prod->selling_price, 2),
+                'url'      => route('shop.product.show', $prod->product_id),
+                'image'    => function_exists('getShopImageUrl') ? getShopImageUrl($prod->image_path) : null,
+            ];
+        }
+
+        // 2. Search Orders
+        $orders = DB::table('tbl_shop_orders as o')
+            ->leftJoin('shop_customers as c', 'o.customer_id', '=', 'c.customer_id')
+            ->where(function($query) use ($q) {
+                $query->where('o.order_number', 'like', "%{$q}%")
+                      ->orWhere('c.name', 'like', "%{$q}%")
+                      ->orWhere('c.phone', 'like', "%{$q}%");
+            })
+            ->select('o.order_id', 'o.order_number', 'o.total_amount', 'o.order_status', 'c.name as customer_name')
+            ->limit(5)
+            ->get();
+
+        foreach ($orders as $ord) {
+            $results[] = [
+                'type'     => 'Order',
+                'icon'     => 'bx-receipt',
+                'title'    => 'Order #' . $ord->order_number,
+                'subtitle' => ($ord->customer_name ? $ord->customer_name . ' • ' : '') . '₹' . number_format($ord->total_amount, 2) . ' (' . ucfirst($ord->order_status) . ')',
+                'url'      => route('shop.order.show', $ord->order_id),
+                'image'    => null,
+            ];
+        }
+
+        // 3. Search Customers
+        $customers = DB::table('shop_customers')
+            ->where(function($query) use ($q) {
+                $query->where('name', 'like', "%{$q}%")
+                      ->orWhere('email', 'like', "%{$q}%")
+                      ->orWhere('phone', 'like', "%{$q}%");
+            })
+            ->select('customer_id', 'name', 'email', 'phone')
+            ->limit(5)
+            ->get();
+
+        foreach ($customers as $cust) {
+            $results[] = [
+                'type'     => 'Customer',
+                'icon'     => 'bx-user',
+                'title'    => $cust->name,
+                'subtitle' => $cust->email . ($cust->phone ? ' • ' . $cust->phone : ''),
+                'url'      => route('shop.customer.show', $cust->customer_id),
+                'image'    => null,
+            ];
+        }
+
+        return response()->json(['results' => $results]);
+    }
 }

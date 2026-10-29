@@ -249,4 +249,85 @@ function shopConfirmDelete(url, data, onSuccess) {
         }
     });
 }
+
+// ── Global Search Handling ──────────────────────────────────────────
+(function() {
+    let searchTimer = null;
+    const searchInput = $('#shopGlobalSearch');
+    const resultBox   = $('#globalSearchResults');
+    const spinner     = $('#searchSpinner');
+
+    if (!searchInput.length) return;
+
+    searchInput.on('input', function() {
+        const query = $(this).val().trim();
+        clearTimeout(searchTimer);
+
+        if (query.length < 2) {
+            resultBox.hide().empty();
+            spinner.addClass('d-none');
+            return;
+        }
+
+        spinner.removeClass('d-none');
+
+        searchTimer = setTimeout(function() {
+            $.ajax({
+                url: "{{ route('shop.global_search') }}",
+                data: { q: query },
+                dataType: 'json',
+                success: function(res) {
+                    spinner.addClass('d-none');
+                    if (!res.results || !res.results.length) {
+                        resultBox.html('<div class="p-3 text-center text-muted small"><i class="bx bx-search-alt me-1"></i> No matching products, orders or customers found.</div>').show();
+                        return;
+                    }
+
+                    let html = '<div class="py-2">';
+                    let currentType = '';
+
+                    res.results.forEach(item => {
+                        if (item.type !== currentType) {
+                            currentType = item.type;
+                            html += `<div class="px-3 pt-2 pb-1 text-uppercase text-muted fw-bold" style="font-size:0.68rem; letter-spacing:0.5px;">${currentType}s</div>`;
+                        }
+
+                        let avatarHtml = `<div class="rounded d-flex align-items-center justify-content-center bg-light text-primary me-2" style="width:34px; height:34px; flex-shrink:0;">
+                                            <i class="bx ${item.icon} fs-5"></i>
+                                          </div>`;
+                        if (item.image) {
+                            avatarHtml = `<img src="${item.image}" alt="" class="rounded me-2 shadow-sm" style="width:34px; height:34px; object-fit:cover; flex-shrink:0;">`;
+                        }
+
+                        html += `<a href="${item.url}" class="dropdown-item d-flex align-items-center py-2 px-3 border-bottom border-light">
+                                    ${avatarHtml}
+                                    <div class="overflow-hidden">
+                                        <div class="fw-semibold text-truncate text-dark" style="font-size:0.83rem;">${item.title}</div>
+                                        <div class="text-muted text-truncate" style="font-size:0.75rem;">${item.subtitle}</div>
+                                    </div>
+                                 </a>`;
+                    });
+
+                    html += '</div>';
+                    resultBox.html(html).show();
+                },
+                error: function() {
+                    spinner.addClass('d-none');
+                }
+            });
+        }, 300);
+    });
+
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.topbar-search').length) {
+            resultBox.hide();
+        }
+    });
+
+    searchInput.on('focus', function() {
+        if ($(this).val().trim().length >= 2 && resultBox.children().length > 0) {
+            resultBox.show();
+        }
+    });
+})();
 </script>

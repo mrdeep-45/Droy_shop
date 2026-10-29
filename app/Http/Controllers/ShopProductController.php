@@ -64,15 +64,7 @@ class ShopProductController extends Controller
 
         $data = [];
         foreach ($products as $i => $p) {
-            if (!$p->image_path) {
-                $imgSrc = 'https://placehold.co/100x100/e2e8f0/475569?text=Product';
-            } elseif (str_starts_with($p->image_path, 'http')) {
-                $imgSrc = $p->image_path;
-            } elseif (str_starts_with($p->image_path, 'uploads/') || str_starts_with($p->image_path, 'assets/')) {
-                $imgSrc = asset($p->image_path);
-            } else {
-                $imgSrc = asset('storage/' . $p->image_path);
-            }
+            $imgSrc = getShopImageUrl($p->image_path, 'https://placehold.co/100x100/e2e8f0/475569?text=Product');
             $productCell = '<div class="d-flex align-items-center gap-3">
                                 <img src="' . $imgSrc . '" alt="IMG" class="rounded shadow-sm" style="width:40px;height:40px;object-fit:cover;">
                                 <div>

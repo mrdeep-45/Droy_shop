@@ -229,6 +229,11 @@
             <i class="bx bx-cog"></i> Shop Settings
         </a>
 
+        <a href="{{ route('shop.roles.permissions.index') }}"
+           class="shop-nav-link {{ str_starts_with($currentRoute, 'shop.roles.permissions') ? 'active' : '' }}">
+            <i class="bx bx-shield-quarter"></i> Roles & Permissions
+        </a>
+
         <a href="{{ route('shop.activity_log.index') }}"
            class="shop-nav-link {{ str_starts_with($currentRoute, 'shop.activity_log') ? 'active' : '' }}">
             <i class="bx bx-history"></i> Activity Logs
@@ -282,11 +287,13 @@
     </button>
 
     {{-- Search --}}
-    <div class="topbar-search d-none d-md-block">
+    <div class="topbar-search d-none d-md-block position-relative">
         <div class="input-group">
             <span class="input-group-text"><i class="bx bx-search"></i></span>
-            <input type="text" class="form-control" id="shopGlobalSearch" placeholder="Search products, orders, customers...">
+            <input type="text" class="form-control" id="shopGlobalSearch" placeholder="Search products, orders, customers..." autocomplete="off">
+            <span class="input-group-text d-none" id="searchSpinner"><i class="bx bx-loader-alt bx-spin text-primary"></i></span>
         </div>
+        <div id="globalSearchResults" class="dropdown-menu shadow border-0 p-0 w-100" style="display:none; max-height:380px; overflow-y:auto; border-radius:10px; margin-top:6px; z-index:1050;"></div>
     </div>
 
     <div class="ms-auto d-flex align-items-center gap-2">
